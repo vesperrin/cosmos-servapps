@@ -1,0 +1,126 @@
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "adminOnly",
+        "label": "Do you want to make this service admin only?",
+        "initialValue": true,
+        "type": "checkbox"
+      },
+      {
+        "name": "jellyfin",
+        "name-container": "jellyfin-name",
+        "label": "Where is your Jellyfin instance? (leave blank if none)",
+        "type": "container"
+      }
+    ]
+  },
+  "minVersion": "0.7.6",
+  "services": {
+    "{ServiceName}": {
+      "image": "domistyle/jellysearch:latest",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "JELLYFIN_CONFIG_DIR=/jellyfin-config/data",
+        "JELLYFIN_URL=http://{Context.jellyfin-name}:8096",
+        "MEILI_URL=http://{ServiceName}-meilisearch:7700",
+        "MEILI_MASTER_KEY={Passwords.0}",
+        "INDEX_CRON=0 0 0/2 ? * * *"
+      ],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-persistent-env": "JELLYFIN_URL, MEILI_URL, MEILI_MASTER_KEY",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/Jellysearch/icon.png"
+      },
+      "depends_on": [
+        "{ServiceName}-meilisearch"
+      ],
+      "volumes": [
+        {
+          "source": "{ServiceName}-config",
+          "target": "/config:ro",
+          "type": "volume"
+        },
+        {
+          "source": "{Context.jellyfin-name}-config",
+          "target": "/jellyfin-config",
+          "type": "volume"
+        }
+      ],
+      "ports": [
+        "5000:5000"
+      ],
+      "networks": {
+        "{ServiceName}-meilisearch": {}
+      },
+      "routes": [
+        {
+          "name": "{ServiceName}",
+          "description": "[USE JELLYFIN URL HERE] Forward search requests from Jellyfin to Jellysearch",
+          "useHost": true,
+          "usePath": true,
+          "UsePathPrefix": true,
+          "PathPrefix": "/(?:searchTerm|SearchTerm)=[^&]*)",
+          "target": "http://{ServiceName}:5000",
+          "mode": "SERVAPP",
+          "Timeout": 14400000,
+          "ThrottlePerMinute": 12000,
+          "BlockCommonBots": true,
+          "SmartShield": {
+            "Enabled": true,
+            "PolicyStrictness": 3,
+            "PerUserRequestLimit": 12000,
+            "PerUserSimultaneous": 100,
+            "MaxGlobalSimultaneous": 1000
+          },
+          "hideFromDashboard": true
+        }
+      ]
+      , "links": [
+        {if Context.jellyfin}
+          "{Context.jellyfin-name}"
+        {/if}
+      ]
+    },
+    "{ServiceName}-meilisearch": {
+      "image": "getmeili/meilisearch:latest",
+      "container_name": "{ServiceName}-meilisearch",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "MEILI_MASTER_KEY={Passwords.0}"
+      ],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-persistent-env": "MEILI_MASTER_KEY",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/Jellysearch/icon.png"
+      },
+      "volumes": [
+        {
+          "source": "{ServiceName}-Meilisearch-data",
+          "target": "/meili_data",
+          "type": "volume"
+        }
+      ],
+      "ports": [
+        "7700:7700"
+      ],
+      "networks": {
+        "{ServiceName}-meilisearch": {}
+      }
+    }
+  },
+  "networks": {
+    "{ServiceName}-meilisearch": {}
+  }
+}

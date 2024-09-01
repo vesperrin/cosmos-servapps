@@ -1,0 +1,18 @@
+{
+  "name": "Jellysearch",
+  "description": "A fast full-text search proxy for Jellyfin. Integrates seamlessly with most Jellyfin clients.",
+  "longDescription": "<p>JellySearch keeps a separate index of the Jellyfin SQLite database inside of Meilisearch. It keeps the index in sync with Jellyfin with a cronjob.</br>When a search request is made by a Jellyfin client, the request is forwarded to JellySearch instead of directly to Jellyfin by the reverse proxy.</br>JellySearch will then search and filter by the input query in Meilisearch and forward the found items to Jellyfin, resulting in a great speed up of search queries.</br>On a large Jellyfin server this brings the search speed per request down from about 2 seconds to 1 - 150 milliseconds.</br>As an added bonus, the search is much less prone to not finding results because of typos and also supports searching across multiple fields, e.g. 'mr robot', 'how to train your dragon 2010', 'queen a night at the opera', 'brotherhood fullmetal', 'better call saul' all work.</p>",
+  "tags": [
+    "media",
+    "search engine",
+    "server",
+    "jellyfin",
+    "windows",
+    "linux",
+    "macos",
+    "docker"
+  ],
+  "repository": "https://gitlab.com/DomiStyle/jellysearch",
+  "image": "https://hub.docker.com/r/domistyle/jellysearch",
+  "supported_architectures": ["amd64", "arm64"]
+}
