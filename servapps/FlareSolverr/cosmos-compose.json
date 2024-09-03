@@ -1,0 +1,48 @@
+
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "adminOnly",
+        "label": "Do you want to make this service admin only?",
+        "initialValue": true,
+        "type": "checkbox"
+      },
+      {
+        "name": "prowlarr",
+        "name-container": "prowlarr-name",
+        "label": "Where is your Prowlarr instance?",
+        "type": "container"
+      }
+    ]
+  },
+  "minVersion": "0.10.3",
+  "services": {
+    "{ServiceName}": {
+      "image": "flaresolverr/flaresolverr:latest",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "LOG_LEVEL=info",
+        "LOG_HTML=false",
+        "CAPTCHA_SOLVER=none"
+      ],
+      "labels": {
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/FlareSolverr/icon.png"
+      },
+      "ports": [
+        "8191:8191"
+      ],
+      "links": [
+        "{Context.prowlarr-name}"
+      ]
+    }
+  }
+}
