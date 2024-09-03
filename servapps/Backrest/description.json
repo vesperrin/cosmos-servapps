@@ -1,0 +1,9 @@
+{
+  "name": "Backrest",
+  "description": "Web-accessible backup solution built on top of restic.",
+  "longDescription": "<p>Backrest provides a WebUI which wraps the restic CLI and makes it easy to create repos, browse snapshots, and restore files. Additionally, Backrest can run in the background and take an opinionated approach to scheduling snapshots and orchestrating repo health operations.</p>",
+  "tags": ["backup", "data security", "automation", "cross-platform", "tool", "open-source", "snapshot"],
+  "repository": "https://github.com/garethgeorge/backrest",
+  "image": "https://hub.docker.com/r/garethgeorge/backrest",
+  "supported_architectures": ["amd64", "arm64"]
+}

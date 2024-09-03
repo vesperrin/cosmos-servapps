@@ -1,0 +1,85 @@
+
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "adminOnly",
+        "label": "Do you want to make this service admin only?",
+        "initialValue": true,
+        "type": "checkbox"
+      }
+    ]
+  },
+  "minVersion": "0.7.6",
+  "services": {
+    "{ServiceName}": {
+      "image": "garethgeorge/backrest",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "BACKREST_PORT=9898",
+        "BACKREST_DATA=/data",
+        "BACKREST_CONFIG=/config/config.json",
+        "XDG_CACHE_HOME=/cache",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "labels": {
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-persistent-env": "",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/Backrest/icon.png"
+      },
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-cache",
+          "target": "/cache"
+        },
+        {
+          "type": "volume",
+          "source": "{ServiceName}-config",
+          "target": "/config"
+        },
+        {
+          "type": "volume",
+          "source": "{ServiceName}-data",
+          "target": "/data"
+        },
+        {
+          "type": "volume",
+          "source": "{ServiceName}-restic-repos",
+          "target": "/repos"
+        },
+        {
+          "type": "bind",
+          "source": "/var/lib/cosmos",
+          "target": "/userdata"
+        }
+      ],
+      "routes": [
+        {
+          "name": "{ServiceName}",
+          "description": "Expose {ServiceName} to the web",
+          "useHost": true,
+          "target": "http://{ServiceName}:9898",
+          "mode": "SERVAPP",
+          "Timeout": 14400000,
+          "ThrottlePerMinute": 12000,
+          "BlockCommonBots": true,
+          "SmartShield": {
+            "Enabled": true
+          },
+          "AuthEnabled": true
+          {if Context.adminOnly}
+           , "AuthAdmin": true
+          {/if}
+        }
+      ]
+    }
+  }
+}
