@@ -1,0 +1,9 @@
+{
+  "name": "Tdarr",
+  "description": "Audio/Video Library Analytics & Transcode/Remux Automation.",
+  "longDescription": "<p>Tdarr V2 is a cross-platform conditional based transcoding application for automating media library transcode/remux management in order to process your media files as required. For example, you can set rules for the required codecs, containers, languages etc that your media should have which helps keeps things organized and can increase compatability with your devices. A common use for Tdarr is to simply convert video files from h264 to h265 (hevc), saving 40%-50% in size.</p>",
+  "tags": ["transcode", "compress", "data", "audio", "video", "code"],
+  "repository": "https://github.com/HaveAGitGat/Tdarr",
+  "image": "https://ghcr.io/haveagitgat/tdarr:latest",
+  "supported_architectures": ["amd64", "arm64"]
+  }

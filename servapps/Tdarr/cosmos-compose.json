@@ -1,0 +1,142 @@
+
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "adminOnly",
+        "label": "Do you want to make this service admin only?",
+        "initialValue": true,
+        "type": "checkbox"
+      },
+      {
+        "name": "intelQsc",
+        "label": "Do you have Intel Quick Sync Video feature?",
+        "initialValue": false,
+        "type": "checkbox"
+      },
+      {
+        "name": "nvidia",
+        "label": "Do you have an Nvidia GPU?",
+        "initialValue": false,
+        "type": "checkbox"
+      }
+    ],
+    "post-install": [
+      {
+        "type": "warning",
+        "label": "It's recommended to use a cheap SSD for the transcode cache at '/transcode_cache'."
+      }
+      {if Context.nvidia}
+      , {
+        "type": "warning",
+        "label": "Using NVidia GPU needs manual steps, read documentation for more information: https://docs.tdarr.io/docs/installation/docker/hardware-transcoding"
+      }
+      {/if}
+    ]
+  },
+  "minVersion": "0.10.3",
+  "services": {
+    "{ServiceName}": {
+      "image": "ghcr.io/haveagitgat/tdarr:latest",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "UMASK_SET=002",
+        "TZ=auto",
+        "serverIP=0.0.0.0",
+        "serverPort=8266",
+        "webUIPort=8265",
+        "ffmpegVersion=6",
+        "internalNode=true",
+        "inContainer=true",
+        "nodeName=MyInternalNode"
+        , "NVIDIA_DRIVER_CAPABILITIES=all"
+        , "NVIDIA_VISIBLE_DEVICES=all"
+      ],
+      "labels": {
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/Tdarr/icon.png"
+      },
+      "ports": [
+        "8265:8265",
+        "8266:8266"
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-server",
+          "target": "/app/server"
+        },
+        {
+          "type": "volume",
+          "source": "{ServiceName}-config",
+          "target": "/app/configs"
+        },
+        {
+          "type": "volume",
+          "source": "{ServiceName}-logs",
+          "target": "/app/logs"
+        },
+        {
+          "type": "bind",
+          "source": "/usr",
+          "target": "/media"
+        },
+        {
+          "type": "bind",
+          "source": "/transcode_cache",
+          "target": "/temp"
+        }
+      ],
+      "routes": [
+        {
+          "name": "{ServiceName}",
+          "description": "Expose {ServiceName} to the web",
+          "useHost": true,
+          "target": "http://{ServiceName}:8265",
+          "mode": "SERVAPP",
+          "Timeout": 14400000,
+          "ThrottlePerMinute": 12000,
+          "BlockCommonBots": true,
+          "SmartShield": {
+            "Enabled": true
+          },
+          "AuthEnabled": true
+          {if Context.adminOnly}
+           , "AuthAdmin": true
+          {/if}
+        }
+      ]
+      {if Context.intelQsc}
+      , "devices": [
+        "/dev/dri:/dev/dri"
+      ]
+      {/if}
+      {if Context.nvidia}
+      , "devices": [
+        "/dev/dri:/dev/dri"
+      ],
+      "deploy": {
+        "resources": {
+          "reservations": {
+            "devices": [
+              {
+                "driver": "nvidia",
+                "count": "all",
+                "capabilities": [
+                  "gpu"
+                ]
+              }
+            ]
+          }
+        }
+      }
+      {/if}
+    }
+  }
+}
