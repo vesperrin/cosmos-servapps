@@ -60,6 +60,12 @@
         "name-container": "transmission-name",
         "label": "Where is you Transmission instance? (leave blank if none)",
         "type": "container"
+      },
+      {
+        "name": "sabnzbd",
+        "name-container": "sabnzbd-name",
+        "label": "Where is you SABnzbd instance? (leave blank if none)",
+        "type": "container"
       }
     ]
   },
@@ -137,6 +143,9 @@
         {/if}
         {if Context.transmission}
         , "{Context.transmission-name}"
+        {/if}
+        {if Context.transmission}
+        , "{Context.sabnzbd-name}"
         {/if}
       ]
     }
