@@ -1,0 +1,13 @@
+{
+  "name": "Docker",
+  "description": "Docker in Docker!",
+  "longDescription": "A simple container with Docker.",
+  "tags": ["docker", "dind", "tool" ],
+  "repository": "https://github.com/docker-library/docker",
+  "image": "docker:dind",
+  "supported_architectures": [
+    "amd64",
+    "arm",
+    "arm64"
+  ]
+}
