@@ -8,12 +8,6 @@
         "type": "checkbox"
       },
       {
-        "name": "notifiarrApiKey",
-        "label": "Enter your Notifiarr API Key",
-        "initialValue": "",
-        "type": "text"
-      },
-      {
         "name": "lidarr",
         "name-container": "lidarr-name",
         "label": "Where is you Lidarr instance? (leave blank if none)",
@@ -247,7 +241,6 @@
       "privileged": true,
       "environment": [
         "TZ=auto",
-        "DN_API_KEY={Context.notifiarrApiKey}",
         "DN_URLBASE=/",
         "DN_LOG_FILE=/config/app.log",
         "DN_HTTP_LOG=/config/http.log"
