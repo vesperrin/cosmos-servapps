@@ -243,6 +243,7 @@
       "image": "golift/notifiarr:latest",
       "container_name": "{ServiceName}",
       "restart": "unless-stopped",
+      "hostname": "cosmos-{ServiceName}",
       "privileged": true,
       "environment": [
         "TZ=auto",
