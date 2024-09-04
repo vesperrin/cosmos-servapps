@@ -14,8 +14,8 @@
     "{ServiceName}": {
       "image": "docker:latest",
       "container_name": "{ServiceName}",
-      "entrypoint": "/bin/sh -c",
-      "command": "sleep infinity",
+      "entrypoint": "/bin/sleep",
+      "command": "infinity",
       "restart": "unless-stopped",
       "privileged": true,
       "UID": 1000,
