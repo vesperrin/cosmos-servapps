@@ -31,8 +31,9 @@
   },
   "services": {
     "{ServiceName}": {
-      "image": "filebrowser/filebrowser",
+      "image": "filebrowser/filebrowser:latest",
       "container_name": "{ServiceName}",
+      "command": "--config /config/.filebrowser.json --database /config/database.db",
       "restart": "unless-stopped",
       "tty": true,
       "stdin_open": true,
@@ -57,9 +58,14 @@
       },
       "volumes": [
         {
+          "type": "volume",
+          "source": "{ServiceName}-config",
+          "target": "/config"
+        },
+        {
+          "type": "bind",
           "source": "{Context.mountPoint}",
-          "target": "/srv",
-          "type": "bind"
+          "target": "/srv"
         }
       ],
       "routes": [
