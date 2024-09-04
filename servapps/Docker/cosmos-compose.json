@@ -12,9 +12,9 @@
   "minVersion": "0.8.0",
   "services": {
     "{ServiceName}": {
-      "image": "docker:alpine",
+      "image": "docker:latest",
       "container_name": "{ServiceName}",
-      "entrypoint": ["/bin/sh", "-c"],
+      "entrypoint": "/bin/sh -c",
       "command": "sleep infinity",
       "restart": "unless-stopped",
       "privileged": true,
