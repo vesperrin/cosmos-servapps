@@ -54,8 +54,10 @@
         "internalNode=true",
         "inContainer=true",
         "nodeName=MyInternalNode"
+        {if Context.nvidia}
         , "NVIDIA_DRIVER_CAPABILITIES=all"
         , "NVIDIA_VISIBLE_DEVICES=all"
+        {/if}
       ],
       "labels": {
         "cosmos-force-network-secured": "true",
