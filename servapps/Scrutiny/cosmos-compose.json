@@ -38,37 +38,30 @@
         "initialValue": "",
         "type": "text"
       }
-    ],
-    "post-install": [
-      {
-        "type": "warning",
-        "label": "It's recommended to use a cheap SSD for the transcode cache at '/transcode_cache'."
-      }
-      {if Context.nvidia}
-      , {
-        "type": "warning",
-        "label": "Using NVidia GPU needs manual steps, read documentation for more information: https://docs.tdarr.io/docs/installation/docker/hardware-transcoding"
-      }
-      {/if}
     ]
   },
   "minVersion": "0.10.3",
   "services": {
     "{ServiceName}": {
-      "image": "ghcr.io/linuxserver/scrutiny",
+      "image": "ghcr.io/analogj/scrutiny:master-web",
       "container_name": "{ServiceName}",
       "restart": "unless-stopped",
+      "depends_on": {
+        "{ServiceName}-influxdb": {
+          "condition": "service_healthy"
+        }
+      },
       "UID": 1000,
       "GID": 1000,
       "environment": [
         "PUID=1000",
         "PGID=1000",
         "TZ=auto",
-        "SCRUTINY_API_ENDPOINT=http://localhost:8080",
-        "SCRUTINY_WEB=true",
-        "SCRUTINY_COLLECTOR=true"
+        "SCRUTINY_WEB_INFLUXDB_HOST={ServiceName}-influxdb"
       ],
       "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
         "cosmos-icon": "https://eralumin.github.io/cosmos/servapps/Scrutiny/icon.png"
@@ -80,12 +73,7 @@
         {
           "type": "volume",
           "source": "{ServiceName}-config",
-          "target": "/config"
-        },
-        {
-          "type": "bind",
-          "source": "/run/udev",
-          "target": "/run/udev:ro"
+          "target": "/opt/scrutiny/config'"
         }
       ],
       "routes": [
@@ -105,6 +93,46 @@
           {if Context.adminOnly}
            , "AuthAdmin": true
           {/if}
+        }
+      ],
+      "healthcheck": {
+        "test": ["CMD", "curl", "-f", "http://localhost:8080/api/health"],
+        "interval": "5s",
+        "timeout": "10s",
+        "retries": "20",
+        "start_period": "10s"
+      }
+    },
+    "{ServiceName}-collector": {
+      "image": "ghcr.io/analogj/scrutiny:master-collector",
+      "container_name": "{ServiceName}-collector",
+      "restart": "unless-stopped",
+      "depends_on": {
+        "{ServiceName}": {
+          "condition": "service_healthy"
+        }
+      },
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "COLLECTOR_API_ENDPOINT=http://{ServiceName}:8080",
+        "COLLECTOR_HOST_ID={ServiceName}-collector"
+      ],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos/servapps/Scrutiny/icon.png"
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/run/udev",
+          "target": "/run/udev:ro"
         }
       ],
       "devices": [
@@ -128,6 +156,46 @@
         "SYS_RAWIO",
         "SYS_ADMIN"
       ]
+    },
+    "{ServiceName}-influxdb": {
+      "image": "influxdb:latest",
+      "container_name": "{ServiceName}-influxdb",
+      "restart": "unless-stopped",
+      "depends_on": {
+        "{ServiceName}": {
+          "condition": "service_healthy"
+        }
+      },
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto"
+      ],
+      "ports": [
+        "8086:8086"
+      ],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos/servapps/Scrutiny/icon.png"
+      },
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-influxdb",
+          "target": "/var/lib/influxdb2"
+        }
+      ],
+      "healthcheck": {
+        "test": ["CMD", "curl", "-f", "http://localhost:8086/health"],
+        "interval": "5s",
+        "timeout": "10s",
+        "retries": "20"
+      }
     }
   }
 }
