@@ -1,0 +1,134 @@
+
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "adminOnly",
+        "label": "Do you want to make this service admin only?",
+        "initialValue": true,
+        "type": "checkbox"
+      },
+      {
+        "name": "device1",
+        "label": "Where is the first device to monitor?",
+        "initialValue": "",
+        "type": "text"
+      },
+      {
+        "name": "device2",
+        "label": "Where is the second device to monitor?",
+        "initialValue": "",
+        "type": "text"
+      },
+      {
+        "name": "device3",
+        "label": "Where is the third device to monitor?",
+        "initialValue": "",
+        "type": "text"
+      },
+      {
+        "name": "device4",
+        "label": "Where is the fourth device to monitor?",
+        "initialValue": "",
+        "type": "text"
+      },
+      {
+        "name": "device5",
+        "label": "Where is the fifth device to monitor?",
+        "initialValue": "",
+        "type": "text"
+      }
+    ],
+    "post-install": [
+      {
+        "type": "warning",
+        "label": "It's recommended to use a cheap SSD for the transcode cache at '/transcode_cache'."
+      }
+      {if Context.nvidia}
+      , {
+        "type": "warning",
+        "label": "Using NVidia GPU needs manual steps, read documentation for more information: https://docs.tdarr.io/docs/installation/docker/hardware-transcoding"
+      }
+      {/if}
+    ]
+  },
+  "minVersion": "0.10.3",
+  "services": {
+    "{ServiceName}": {
+      "image": "ghcr.io/linuxserver/scrutiny",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "SCRUTINY_API_ENDPOINT=http://localhost:8080",
+        "SCRUTINY_WEB=true",
+        "SCRUTINY_COLLECTOR=true"
+      ],
+      "labels": {
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/Scrutiny/icon.png"
+      },
+      "ports": [
+        "8080:8080"
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-config",
+          "target": "/config"
+        },
+        {
+          "type": "bind",
+          "source": "/run/udev",
+          "target": "/run/udev:ro"
+        }
+      ],
+      "routes": [
+        {
+          "name": "{ServiceName}",
+          "description": "Expose {ServiceName} to the web",
+          "useHost": true,
+          "target": "http://{ServiceName}:8080",
+          "mode": "SERVAPP",
+          "Timeout": 14400000,
+          "ThrottlePerMinute": 12000,
+          "BlockCommonBots": true,
+          "SmartShield": {
+            "Enabled": true
+          },
+          "AuthEnabled": true
+          {if Context.adminOnly}
+           , "AuthAdmin": true
+          {/if}
+        }
+      ],
+      "devices": [
+        ""
+        {if Context.device1}
+        , "{Context.device1}:{Context.device1}"
+        {/if}
+        {if Context.device2}
+        , "{Context.device2}:{Context.device2}"
+        {/if}
+        {if Context.device3}
+        , "{Context.device3}:{Context.device3}"
+        {/if}
+        {if Context.device4}
+        , "{Context.device4}:{Context.device4}"
+        {/if}
+        {if Context.device5}
+        , "{Context.device5}:{Context.device5}"
+        {/if}
+      ],
+      "cap_add": [
+        "SYS_RAWIO",
+        "SYS_ADMIN"
+      ]
+    }
+  }
+}

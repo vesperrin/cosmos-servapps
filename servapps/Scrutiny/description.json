@@ -1,0 +1,9 @@
+{
+  "name": "Scrutiny",
+  "description": "WebUI for smartd S.M.A.R.T monitoring",
+  "longDescription": "<p>Scrutiny is a Hard Drive Health Dashboard & Monitoring solution, merging manufacturer provided S.M.A.R.T metrics with real-world failure rates.</p>",
+  "tags": ["hdd", "drive", "smart", "hardware", "monitoring"],
+  "repository": "https://github.com/AnalogJ/scrutiny",
+  "image": "ghcr.io/linuxserver/scrutiny",
+  "supported_architectures": ["amd64", "arm64"]
+  }
