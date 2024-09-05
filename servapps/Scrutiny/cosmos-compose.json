@@ -46,11 +46,9 @@
       "image": "ghcr.io/analogj/scrutiny:master-web",
       "container_name": "{ServiceName}",
       "restart": "unless-stopped",
-      "depends_on": {
-        "{ServiceName}-influxdb": {
-          "condition": "service_healthy"
-        }
-      },
+      "depends_on": [
+        "{ServiceName}-influxdb"
+      ],
       "UID": 1000,
       "GID": 1000,
       "environment": [
@@ -107,11 +105,9 @@
       "image": "ghcr.io/analogj/scrutiny:master-collector",
       "container_name": "{ServiceName}-collector",
       "restart": "unless-stopped",
-      "depends_on": {
-        "{ServiceName}": {
-          "condition": "service_healthy"
-        }
-      },
+      "depends_on": [
+        "{ServiceName}"
+      ],
       "UID": 1000,
       "GID": 1000,
       "environment": [
@@ -161,11 +157,6 @@
       "image": "influxdb:latest",
       "container_name": "{ServiceName}-influxdb",
       "restart": "unless-stopped",
-      "depends_on": {
-        "{ServiceName}": {
-          "condition": "service_healthy"
-        }
-      },
       "UID": 1000,
       "GID": 1000,
       "environment": [
