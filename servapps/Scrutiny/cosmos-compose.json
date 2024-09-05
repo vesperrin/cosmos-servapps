@@ -108,9 +108,8 @@
         }
       ],
       "devices": [
-        ""
         {if Context.device1}
-        , "{Context.device1}:{Context.device1}"
+        "{Context.device1}:{Context.device1}"
         {/if}
         {if Context.device2}
         , "{Context.device2}:{Context.device2}"
