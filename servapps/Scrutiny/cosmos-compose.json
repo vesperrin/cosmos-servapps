@@ -71,7 +71,7 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/Scrutiny/icon.png"
+        "cosmos-icon": "https://eralumin.github.io/cosmos/servapps/Scrutiny/icon.png"
       },
       "ports": [
         "8080:8080"
