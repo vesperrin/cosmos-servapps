@@ -95,10 +95,10 @@
       ],
       "healthcheck": {
         "test": ["CMD", "curl", "-f", "http://localhost:8080/api/health"],
-        "interval": "5s",
-        "timeout": "10s",
-        "retries": "20",
-        "start_period": "10s"
+        "interval": 5,
+        "timeout": 10,
+        "retries": 20,
+        "start_period": 10
       }
     },
     "{ServiceName}-collector": {
@@ -183,9 +183,9 @@
       ],
       "healthcheck": {
         "test": ["CMD", "curl", "-f", "http://localhost:8086/health"],
-        "interval": "5s",
-        "timeout": "10s",
-        "retries": "20"
+        "interval": 5,
+        "timeout": 10,
+        "retries": 20
       }
     }
   }
