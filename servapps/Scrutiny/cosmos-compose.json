@@ -71,7 +71,7 @@
         {
           "type": "volume",
           "source": "{ServiceName}-config",
-          "target": "/opt/scrutiny/config'"
+          "target": "/opt/scrutiny/config"
         }
       ],
       "routes": [
