@@ -1,0 +1,125 @@
+
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "adminOnly",
+        "label": "Do you want to make this service admin only?",
+        "initialValue": true,
+        "type": "checkbox"
+      }
+    ]
+  },
+  "minVersion": "0.10.3",
+  "services": {
+    "{ServiceName}": {
+      "image": "netdata/netdata:latest",
+      "container_name": "{ServiceName}",
+      "pid": "host",
+      "network_mode": "host",
+      "cap_add": [
+        "SYS_PTRACE",
+        "SYS_ADMIN"
+      ],
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto"
+      ],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/NetData/icon.png"
+      },
+      "ports": [
+        "19999:19999"
+      ],
+      "routes": [
+        {
+          "name": "{ServiceName}",
+          "description": "Expose {ServiceName} to the web",
+          "useHost": true,
+          "target": "http://{ServiceName}:19999",
+          "mode": "SERVAPP",
+          "Timeout": 14400000,
+          "ThrottlePerMinute": 12000,
+          "BlockCommonBots": true,
+          "SmartShield": {
+            "Enabled": true
+          },
+          "AuthEnabled": true
+          {if Context.adminOnly}
+           , "AuthAdmin": true
+          {/if}
+        }
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-config",
+          "target": "/etc/netdata"
+        },
+        {
+          "type": "volume",
+          "source": "{ServiceName}-lib",
+          "target": "/var/lib/netdata"
+        },
+        {
+          "type": "volume",
+          "source": "{ServiceName}-cache",
+          "target": "/var/cache/netdata"
+        },
+        {
+          "type": "bind",
+          "source": "/",
+          "target": "/host/root:ro,rslave"
+        },
+        {
+          "type": "bind",
+          "source": "/etc/passwd",
+          "target": "/host/etc/passwd:ro"
+        },
+        {
+          "type": "bind",
+          "source": "/etc/group",
+          "target": "/host/etc/group:ro"
+        },
+        {
+          "type": "bind",
+          "source": "/etc/localtime",
+          "target": "/etc/localtime:ro"
+        },
+        {
+          "type": "bind",
+          "source": "/proc",
+          "target": "/host/proc:ro"
+        },
+        {
+          "type": "bind",
+          "source": "/sys",
+          "target": "/host/sys:ro"
+        },
+        {
+          "type": "bind",
+          "source": "/etc/os-release",
+          "target": "/host/etc/os-release:ro"
+        },
+        {
+          "type": "bind",
+          "source": "/var/log",
+          "target": "/host/var/log:ro"
+        },
+        {
+          "type": "bind",
+          "source": "/var/run/docker.sock",
+          "target": "/var/run/docker.sock:ro"
+        }
+      ]
+    }
+  }
+}

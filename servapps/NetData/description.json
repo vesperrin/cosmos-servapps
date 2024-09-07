@@ -1,0 +1,9 @@
+{
+  "name": "Netdata",
+  "description": "Monitor your servers, containers, and applications, in high-resolution and in real-time.",
+  "longDescription": "<p>Netdata is a high-performance, cloud-native, and on-premises observability platform designed to monitor metrics and logs with unparalleled efficiency. It delivers a simpler, faster, and significantly easier approach to real-time, low-latency monitoring for systems, containers, and applications. Netdata requires zero-configuration to get started, offering a powerful and comprehensive monitoring experience, out of the box.</p>",
+  "tags": ["monitoring", "alerting", "data"],
+  "repository": "https://github.com/netdata/netdata",
+  "image": "netdata/netdata",
+  "supported_architectures": ["amd64", "arm64"]
+  }
