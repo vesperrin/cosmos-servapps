@@ -16,7 +16,7 @@
       "image": "netdata/netdata:latest",
       "container_name": "{ServiceName}",
       "pid": "host",
-      "network_mode": "host",
+      "network_mode": "bridge",
       "cap_add": [
         "SYS_PTRACE",
         "SYS_ADMIN"
