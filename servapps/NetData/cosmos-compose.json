@@ -17,6 +17,9 @@
       "container_name": "{ServiceName}",
       "pid": "host",
       "network_mode": "bridge",
+      "security_opt": [
+        "apparmor:unconfined"
+      ],
       "cap_add": [
         "SYS_PTRACE",
         "SYS_ADMIN"
