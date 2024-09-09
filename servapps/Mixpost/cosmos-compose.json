@@ -84,7 +84,7 @@
       ]
     },
     "{ServiceName}-mysql": {
-      "image": "mysql:latest",
+      "image": "mysql/mysql-server:8.0",
       "container_name": "{ServiceName}-mysql",
       "restart": "unless-stopped",
       "UID": 1000,
