@@ -115,6 +115,9 @@
           "target": "/var/lib/mysql"
         }
       ],
+      "networks": {
+        "{ServiceName}-mysql": {}
+      },
       "healthcheck": {
         "test": [
           "CMD",
@@ -152,6 +155,9 @@
           "target": "/data"
         }
       ],
+      "networks": {
+        "{ServiceName}-redis": {}
+      },
       "healthcheck": {
         "test": [
           "CMD",
