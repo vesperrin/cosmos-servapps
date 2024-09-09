@@ -31,6 +31,7 @@
         "PUID=1000",
         "PGID=1000",
         "TZ=auto",
+        "APP_PORT=9000",
         "APP_NAME={ServiceName}",
         "APP_KEY={Context.appKey}",
         "APP_DEBUG=false",
@@ -41,6 +42,7 @@
         "DB_DATABASE={ServiceName}",
         "DB_USERNAME={ServiceName}",
         "DB_PASSWORD={Passwords.0}",
+        "REDIS_HOST={ServiceName}-redis",
         "REDIS_PORT=6379"
       ],
       "labels": {
