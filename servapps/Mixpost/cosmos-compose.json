@@ -13,6 +13,16 @@
         "initialValue": true,
         "type": "checkbox"
       }
+    ],
+    "post-install": [
+      {
+        "type": "info",
+        "label": "Credentials for the first connection: Login = admin@example.com; Password = changeme;"
+      },
+      {
+        "type": "info",
+        "label": "The installation will take a few minutes before the service is available."
+      }
     ]
   },
   "minVersion": "0.7.6",
@@ -92,7 +102,7 @@
       ]
     },
     "{ServiceName}-mysql": {
-      "image": "mysql/mysql-server:8.0",
+      "image": "mysql:latest",
       "container_name": "{ServiceName}-mysql",
       "restart": "unless-stopped",
       "UID": 1000,
@@ -128,7 +138,7 @@
           "CMD",
           "mysqladmin",
           "ping",
-          "-p ${Passwords.0}"
+          "-p {Passwords.0}"
         ],
         "retries": 3,
         "timeout": 5
