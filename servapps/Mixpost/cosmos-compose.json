@@ -53,7 +53,7 @@
         "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/Mixpost/icon.png"
       },
       "ports": [
-        "9000:9000"
+        "9000:80"
       ],
       "volumes": [
         {
@@ -76,7 +76,7 @@
           "name": "{ServiceName}",
           "description": "Expose {ServiceName} to the web",
           "useHost": true,
-          "target": "http://{ServiceName}:9000",
+          "target": "http://{ServiceName}:80",
           "mode": "SERVAPP",
           "Timeout": 14400000,
           "ThrottlePerMinute": 12000,
