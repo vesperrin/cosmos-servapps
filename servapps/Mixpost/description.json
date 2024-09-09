@@ -1,0 +1,9 @@
+{
+  "name": "Mixpost",
+  "description": "Mixpost it's the coolest Self hosted social media management software.",
+  "longDescription": "<p>Mixpost is a robust and versatile social media management platform, designed to streamline social media operations and enhance content marketing strategies.</p>",
+  "tags": ["youtube", "instagram", "tiktok", "facebook", "twitter", "media", "social network", "social media management", "tool"],
+  "repository": "https://github.com/inovector/mixpost",
+  "image": "inovector/mixpost:latest",
+  "supported_architectures": ["amd64", "arm64"]
+}
