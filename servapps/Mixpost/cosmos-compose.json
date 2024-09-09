@@ -42,7 +42,6 @@
         "DB_USERNAME={ServiceName}",
         "DB_PASSWORD={Passwords.0}",
         "REDIS_PORT=6379"
-
       ],
       "labels": {
         "cosmos-stack": "{ServiceName}",
@@ -100,6 +99,7 @@
         "PUID=1000",
         "PGID=1000",
         "TZ=auto",
+        "MYSQL_ALLOW_EMPTY_PASSWORD=true",
         "MYSQL_DATABASE={ServiceName}",
         "MYSQL_USER={ServiceName}",
         "MYSQL_PASSWORD={Passwords.0}"
@@ -126,7 +126,7 @@
           "CMD",
           "mysqladmin",
           "ping",
-          "-p ${DB_PASSWORD}"
+          "-p ${Passwords.0}"
         ],
         "retries": 3,
         "timeout": 5
