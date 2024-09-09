@@ -18,7 +18,7 @@
   "minVersion": "0.7.6",
   "services": {
     "{ServiceName}": {
-      "image": " inovector/mixpost:latest",
+      "image": "inovector/mixpost:latest",
       "container_name": "{ServiceName}",
       "restart": "unless-stopped",
       "depends_on": [
@@ -123,7 +123,7 @@
       }
     },
     "{ServiceName}-redis": {
-      "image": " redis:alpine",
+      "image": "redis:alpine",
       "container_name": "{ServiceName}-redis",
       "restart": "unless-stopped",
       "command": "redis-server --appendonly yes --replica-read-only no",
