@@ -171,7 +171,6 @@
   },
 
   "networks": {
-    "{ServiceName}": {},
     "{ServiceName}-mysql": {},
     "{ServiceName}-redis": {}
   }
