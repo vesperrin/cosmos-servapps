@@ -88,7 +88,7 @@
       ]
     },
     "{ServiceName}-mysql": {
-      "image": "mysql:latest",
+      "image": "mysql/mysql-server:8.0",
       "container_name": "{ServiceName}-mysql",
       "restart": "unless-stopped",
       "UID": 1000,
@@ -97,7 +97,6 @@
         "PUID=1000",
         "PGID=1000",
         "TZ=auto",
-        "MYSQL_ALLOW_EMPTY_PASSWORD=true",
         "MYSQL_DATABASE={ServiceName}",
         "MYSQL_USER={ServiceName}",
         "MYSQL_PASSWORD={Passwords.0}"
