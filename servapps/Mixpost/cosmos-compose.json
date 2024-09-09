@@ -36,9 +36,12 @@
         "APP_DEBUG=false",
         "APP_DOMAIN={Hostnames.{StaticServiceName}.{StaticServiceName}.host}",
         "APP_URL=https://{Hostnames.{StaticServiceName}.{StaticServiceName}.host}",
+        "DB_HOST={ServiceName}-mysql",
+        "DB_PORT=3306",
         "DB_DATABASE={ServiceName}",
         "DB_USERNAME={ServiceName}",
-        "DB_PASSWORD={Passwords.0}"
+        "DB_PASSWORD={Passwords.0}",
+        "REDIS_PORT=6379"
 
       ],
       "labels": {
