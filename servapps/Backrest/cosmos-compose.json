@@ -32,7 +32,7 @@
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
         "cosmos-persistent-env": "",
-        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/Backrest/icon.png"
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/Backrest/icon.png"
       },
       "volumes": [
         {
