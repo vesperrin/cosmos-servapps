@@ -28,7 +28,12 @@
       "container_name": "{ServiceName}",
       "hostname": "{ServiceName}",
       "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
       "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
         "SEMAPHORE_DB_USER=semaphore",
         "SEMAPHORE_DB_PASS={Passwords.1}",
         "SEMAPHORE_DB=semaphore",
@@ -97,7 +102,12 @@
           "target": "/var/lib/mysql"
         }
       ],
+      "UID": 1000,
+      "GID": 1000,
       "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
         "MYSQL_ROOT_PASSWORD={Passwords.3}",
         "MYSQL_DATABASE=semaphore",
         "MYSQL_USER=semaphore",
