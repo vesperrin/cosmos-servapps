@@ -48,6 +48,16 @@
           "type": "bind",
           "source": "/dev/null",
           "target": "/home/rundeck/etc/rundeckpro-license.key"
+        },
+        {
+          "type": "volume",
+          "source": "{ServiceName}-data",
+          "target": "/home/rundeck/server/data"
+        },
+        {
+          "type": "volume",
+          "source": "{ServiceName}-logs",
+          "target": "/home/rundeck/var/logs"
         }
       ],
       "networks": {
