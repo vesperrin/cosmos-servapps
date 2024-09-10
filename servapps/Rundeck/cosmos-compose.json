@@ -34,7 +34,7 @@
         "RUNDECK_DATABASE_USERNAME=rundeck",
         "RUNDECK_DATABASE_PASSWORD={Passwords.0}",
         "RUNDECK_DATABASE_URL=jdbc:postgresql://{ServiceName}-db/rundeck?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true",
-        "RUNDECK_GRAILS_URL=http://{ServiceName}:4440"
+        "RUNDECK_GRAILS_URL=https://{Hostnames.{StaticServiceName}.{StaticServiceName}.host}"
       ],
       "labels": {
         "cosmos-stack": "{ServiceName}",
