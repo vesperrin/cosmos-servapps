@@ -7,6 +7,12 @@
         "initialValue": true,
         "type": "checkbox"
       }
+    ],
+    "post-install": [
+      {
+        "type": "info",
+        "label": "Default credentials for Rundeck are admin/admin."
+      }
     ]
   },
   "minVersion": "0.7.6",
@@ -25,7 +31,7 @@
         "PGID=1000",
         "TZ=auto",
         "RUNDECK_DATABASE_DRIVER=org.postgresql.Driver",
-        "RUNDECK_DATABASE_USERNAME={ServiceName}",
+        "RUNDECK_DATABASE_USERNAME=rundeck",
         "RUNDECK_DATABASE_PASSWORD={Passwords.0}",
         "RUNDECK_DATABASE_URL=jdbc:postgresql://{ServiceName}-db/rundeck?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true",
         "RUNDECK_GRAILS_URL=http://{ServiceName}:4440"
@@ -77,8 +83,8 @@
         "PUID=1000",
         "PGID=1000",
         "TZ=auto",
-        "POSTGRES_DB={ServiceName}",
-        "POSTGRES_USER={ServiceName}",
+        "POSTGRES_DB=rundeck",
+        "POSTGRES_USER=rundeck",
         "POSTGRES_PASSWORD={Passwords.0}"
       ],
       "labels": {
