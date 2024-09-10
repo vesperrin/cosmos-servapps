@@ -51,8 +51,8 @@
         },
         {
           "type": "volume",
-          "source": "{ServiceName}-data",
-          "target": "/home/rundeck/server/data"
+          "source": "{ServiceName}-config",
+          "target": "/home/rundeck/server"
         },
         {
           "type": "volume",
