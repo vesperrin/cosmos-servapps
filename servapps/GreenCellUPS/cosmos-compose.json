@@ -18,7 +18,7 @@
   "minVersion": "0.7.6",
   "services": {
     "{ServiceName}": {
-      "image": "ghcr.io/fajfer/gcups:latest",
+      "image": "ghcr.io/fajfer/gcups:1.1.7",
       "container_name": "{ServiceName}",
       "restart": "unless-stopped",
       "UID": 1000,
@@ -36,7 +36,7 @@
         "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/GreenCellUPS/icon.png"
       },
       "ports": [
-        "8080:8080"
+        "0.0.0.0:8085:8080"
       ],
       "volumes": [
         {
@@ -46,7 +46,7 @@
         }
       ],
       "devices": [
-        "{Context.usbDevice}"
+        "{Context.usbDevice}:{Context.usbDevice}"
       ],
       "routes": [
         {
