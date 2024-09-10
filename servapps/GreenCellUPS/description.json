@@ -1,0 +1,9 @@
+{
+  "name": "GreenCellUPS",
+  "description": "Take advantage of all the features of UPS Green Cell",
+  "longDescription": "<p>The program enables preview in real time and displays measurement data including input and output voltages, load frequency of the UPS, its temperature and battery capacity.</p>",
+  "tags": ["ups", "monitoring", "greencell", "tool"],
+  "repository": "https://github.com/fajfer/gcups",
+  "image": "ghcr.io/fajfer/gcups",
+  "supported_architectures": ["amd64", "arm64"]
+}
