@@ -6,6 +6,12 @@
         "label": "Do you want to make this service admin only?",
         "initialValue": false,
         "type": "checkbox"
+      },
+      {
+        "name": "defaultServer",
+        "label": "What is your Jellyfin server? (Leave blank if not)",
+        "initialValue": "",
+        "type": "text"
       }
     ]
   },
@@ -20,22 +26,23 @@
       "environment": [
         "PUID=1000",
         "PGID=1000",
-        "TZ=auto"
+        "TZ=auto",
+        {if Context.defaultServer}
+        , "DEFAULT_SERVER={Context.defaultServer}",
+        "ALLOW_SERVER_SELECTION=false"
+        {/if}
       ],
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
         "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/JellyfinVue/icon.png"
       },
-      "ports": [
-        "8196:80"
-      ],
       "routes": [
         {
           "name": "{ServiceName}",
           "description": "Expose {ServiceName} to the web",
           "useHost": true,
-          "target": "http://{ServiceName}:8196",
+          "target": "http://{ServiceName}:80",
           "mode": "SERVAPP",
           "Timeout": 14400000,
           "ThrottlePerMinute": 12000,
