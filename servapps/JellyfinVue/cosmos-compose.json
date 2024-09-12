@@ -29,7 +29,7 @@
         "TZ=auto"
         {if Context.defaultServer}
         , "DEFAULT_SERVER={Context.defaultServer}"
-        , "ALLOW_SERVER_SELECTION=false"
+        , "DISABLE_SERVER_SELECTION=1"
         {/if}
       ],
       "labels": {
