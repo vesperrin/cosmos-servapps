@@ -26,10 +26,10 @@
       "environment": [
         "PUID=1000",
         "PGID=1000",
-        "TZ=auto",
+        "TZ=auto"
         {if Context.defaultServer}
-        , "DEFAULT_SERVER={Context.defaultServer}",
-        "ALLOW_SERVER_SELECTION=false"
+        , "DEFAULT_SERVER={Context.defaultServer}"
+        , "ALLOW_SERVER_SELECTION=false"
         {/if}
       ],
       "labels": {
