@@ -1,5 +1,5 @@
 {
-  "name": "JellyrfinVueTest",
+  "name": "JellyfinVue",
   "description": "Jellyfin Vue is an experimental, alternative browser-based web client for Jellyfin written using Vue.js.",
   "longDescription": "<p>Jellyfin Vue is an experimental, alternative browser-based web client for Jellyfin written using Vue.js.</p>",
   "tags": ["media", "client", "streaming", "movies", "tv", "music", "photos", "videos", "audiobooks", "podcasts", "dlna", "web", "browser"],
