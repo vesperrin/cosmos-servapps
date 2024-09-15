@@ -1,0 +1,9 @@
+{
+  "name": "PodFetch",
+  "description": "A sleek and efficient podcast downloader.",
+  "longDescription": "<p>Podfetch is a self-hosted podcast manager. It is a web app that lets you download podcasts and listen to them online. It is written in Rust and uses React for the frontend. It also contains a GPodder integration, so you can continue using your current podcast app.</p>",
+  "tags": ["media", "server", "tags", "metadata", "podcasts", "web", "browser", "media browser", "media server", "media streaming", "media player", "media center", "media management", "media organizer", "media collection", "media library", "media manager", "media transcoding"],
+  "repository": "https://github.com/samuel19982/podfetch",
+  "image": "samuel19982/podfetch:latest",
+  "supported_architectures": ["amd64", "arm64"]
+}

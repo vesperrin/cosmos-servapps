@@ -1,0 +1,74 @@
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "adminOnly",
+        "label": "Do you want to make this service admin only?",
+        "initialValue": true,
+        "type": "checkbox"
+      },
+      {
+        "name": "podcastsPath",
+        "label": "What is the path to your podcasts? (leave empty to not mount anything)",
+        "initialValue": "{DefaultDataPath}/podcasts",
+        "type": "text"
+      }
+    ]
+  },
+  "minVersion": "0.7.6",
+  "services": {
+    "{ServiceName}": {
+      "image": "samuel19982/podfetch:latest",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "POLLING_INTERVAL=60",
+        "SERVER_URL=http://{Hostnames.{StaticServiceName}.{StaticServiceName}.host}:80",
+        "DATABASE_URL=sqlite:///app/db/podcast.db"
+      ],
+      "labels": {
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/PodFetch/icon.png"
+      },
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-db",
+          "target": "/app/db"
+        }
+        {if Context.podcastsPath}
+        , {
+          "type": "bind",
+          "source": "{Context.podcastsPath}",
+          "target": "/app/podcasts"
+        }
+        {/if}
+      ],
+      "routes": [
+        {
+          "name": "{ServiceName}",
+          "description": "Expose {ServiceName} to the web",
+          "useHost": true,
+          "target": "http://{ServiceName}:80",
+          "mode": "SERVAPP",
+          "Timeout": 14400000,
+          "ThrottlePerMinute": 12000,
+          "BlockCommonBots": true,
+          "SmartShield": {
+            "Enabled": true
+          },
+          "AuthEnabled": true
+          {if Context.adminOnly}
+           , "AuthAdmin": true
+          {/if}
+        }
+      ]
+    }
+  }
+}
