@@ -1,0 +1,118 @@
+
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "navidrome",
+        "name-container": "navidrome-name",
+        "label": "Where is your Navidrome container?",
+        "type": "container"
+      },
+      {
+        "name": "lidarr",
+        "name-container": "lidarr-name",
+        "label": "Where is your Lidarr container?",
+        "type": "container"
+      },
+      {
+        "name": "spotifyClientId",
+        "label": "What is your Spotify Client ID?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "spotifyClientSecret",
+        "label": "What is your Spotify Client Secret?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "lidarrApiKey",
+        "label": "What is your Lidarr Api Key?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "navidromeUsername",
+        "label": "What is your Navidrome Username?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "navidromePassword",
+        "label": "What is your Navidrome Password?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "spotifyPlaylistArtistLimit",
+        "label": "How much playlists do you want to fetch by Artists?",
+        "type": "text",
+        "initialValue": "3"
+      },
+      {
+        "name": "spotifyPlaylistCategoryLimit",
+        "label": "How much playlists do you want to fetch by Categories?",
+        "type": "text",
+        "initialValue": "3"
+      },
+      {
+        "name": "spotifyRandomCategoryLimit",
+        "label": "How much random categories do you want to fetch?",
+        "type": "text",
+        "initialValue": "50"
+      },
+      {
+        "name": "includedCategories",
+        "label": "Is there categories list you want to always fetch? (give a list separated by commas)",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "excludedCategories",
+        "label": "Is there categories you want to exclude? (give a list separated by commas)",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "cron",
+        "label": "How do you want to schedule this? (Use a cron format like: '0 0 * * *')",
+        "type": "text",
+        "initialValue": "0 0 * * *"
+      }
+    ]
+  },
+  "minVersion": "0.7.6",
+  "services": {
+    "{ServiceName}": {
+      "image": "ghcr.io/eralumin/playlistarr:latest",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "SPOTIFY_CLIENT_ID={Context.spotifyClientId}",
+        "SPOTIFY_CLIENT_SECRET={Context.spotifyClientSecret}",
+        "LIDARR_URL=http://{Context.lidarr-name}:8686",
+        "LIDARR_API_KEY={Context.lidarrApiKey}",
+        "NAVIDROME_URL=http://{Context.lidarr-name}:4533",
+        "NAVIDROME_USERNAME={Context.navidromeUsername}",
+        "NAVIDROME_PASSWORD={Context.navidromePassword}",
+        "SPOTIFY_PLAYLIST_LIMIT_BY_ARTIST={Context.spotifyPlaylistArtistLimit}",
+        "SPOTIFY_PLAYLIST_LIMIT_BY_CATEGORY={Context.spotifyPlaylistCategoryLimit}",
+        "SPOTIFY_RANDOM_CATEGORY_LIMIT={Context.spotifyRandomCategoryLimit}",
+        "INCLUDED_CATEGORIES={Context.includedCategories}",
+        "EXCLUDED_CATEGORIES={Context.excludedCategories}",
+        "CRON_SCHEDULE={Context.cron}"
+      ],
+      "labels": {
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/Playlistarr/icon.png"
+      }
+    }
+  }
+}

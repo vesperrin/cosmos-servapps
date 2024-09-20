@@ -1,0 +1,9 @@
+{
+  "name": "Playlistarr",
+  "description": "Playlist Manager for Lidarr and Navidrome",
+  "longDescription": "<p>This project automates the process of fetching playlists from Spotify, adding corresponding albums to Lidarr, and creating playlists in Navidrome using the Subsonic API.</p>",
+  "tags": ["download", "music", "plalist", "automation", "manager", "media", "collection", "spotify", "metadata", "lidarr", "navidrome", "music management", "music collection"],
+  "repository": "https://github.com/eralumin/playlistarr",
+  "image": "https://ghcr.io/eralumin/playlistarr:latest",
+  "supported_architectures": ["amd64", "arm64"]
+}
