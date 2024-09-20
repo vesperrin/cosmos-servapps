@@ -112,7 +112,16 @@
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
         "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/Playlistarr/icon.png"
-      }
+      },
+      "links": [
+        ""
+        {if Context.lidarr}
+        , "{Context.lidarr-name}"
+        {/if}
+        {if Context.navidrome}
+        , "{Context.navidrome-name}"
+        {/if}
+      ]
     }
   }
 }
