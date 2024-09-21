@@ -110,7 +110,7 @@
         "SPOTIFY_CLIENT_SECRET={Context.spotifyClientSecret}",
         "LIDARR_URL=http://{Context.lidarr-name}:8686",
         "LIDARR_API_KEY={Context.lidarrApiKey}",
-        "NAVIDROME_URL=http://{Context.lidarr-name}:4533",
+        "NAVIDROME_URL=http://{Context.navidrome-name}:4533",
         "NAVIDROME_USERNAME={Context.navidromeUsername}",
         "NAVIDROME_PASSWORD={Context.navidromePassword}",
         "SPOTIFY_PLAYLIST_LIMIT_BY_ARTIST={Context.spotifyPlaylistArtistLimit}",
