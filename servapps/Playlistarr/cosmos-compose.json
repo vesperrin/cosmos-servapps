@@ -75,6 +75,18 @@
         "initialValue": ""
       },
       {
+        "name": "qualityProfile",
+        "label": "What is the name of the Quality Profile to use by default on Lidarr?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "metadataProfile",
+        "label": "What is the name of the Metadata Profile to use by default on Lidarr?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
         "name": "cron",
         "label": "How do you want to schedule this? (Use a cron format like: '0 0 * * *')",
         "type": "text",
@@ -106,6 +118,8 @@
         "SPOTIFY_RANDOM_CATEGORY_LIMIT={Context.spotifyRandomCategoryLimit}",
         "INCLUDED_CATEGORIES={Context.includedCategories}",
         "EXCLUDED_CATEGORIES={Context.excludedCategories}",
+        "QUALITY_PROFILE_NAME={Context.qualityProfile}",
+        "METADATA_PROFILE_NAME={Context.metadataProfile}",
         "CRON_SCHEDULE={Context.cron}"
       ],
       "labels": {
