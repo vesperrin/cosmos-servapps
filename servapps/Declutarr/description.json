@@ -1,0 +1,9 @@
+{
+  "name": "Declutarr",
+  "description": "Radarr, Sonarr, Lidarr, Readarr and Whisparr download queues cleaner.",
+  "longDescription": "<p>Watches radarr, sonarr, lidarr, readarr and whisparr download queues and removes downloads if they become stalled or no longer needed.</p>",
+  "tags": ["download", "cleaner", "automation", "manager", "media", "collection", "lidarr", "readarr", "sonarr", "radarr", "whisparr"],
+  "repository": "https://github.com/ManiMatter/decluttarr",
+  "image": "https://ghcr.io/manimatter/decluttarr:latest",
+  "supported_architectures": ["amd64", "arm64"]
+}

@@ -1,0 +1,167 @@
+
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "lidarr",
+        "name-container": "lidarr-name",
+        "label": "Where is your Lidarr container?",
+        "type": "container"
+      },
+      {
+        "name": "lidarrApiKey",
+        "label": "What is your Lidarr Api Key?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "radarr",
+        "name-container": "radarr-name",
+        "label": "Where is your Radarr container?",
+        "type": "container"
+      },
+      {
+        "name": "radarrApiKey",
+        "label": "What is your Radarr Api Key?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "sonarr",
+        "name-container": "sonarr-name",
+        "label": "Where is your Sonarr container?",
+        "type": "container"
+      },
+      {
+        "name": "sonarrApiKey",
+        "label": "What is your Sonarr Api Key?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "readarr",
+        "name-container": "readarr-name",
+        "label": "Where is your Readarr container?",
+        "type": "container"
+      },
+      {
+        "name": "readarrApiKey",
+        "label": "What is your Readarr Api Key?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "whisparr",
+        "name-container": "whisparr-name",
+        "label": "Where is your Whisparr container?",
+        "type": "container"
+      },
+      {
+        "name": "whisparrApiKey",
+        "label": "What is your Whisparr Api Key?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "qbittorrent",
+        "name-container": "qbittorrent-name",
+        "label": "Where is your qBitTorrent container?",
+        "type": "container"
+      },
+      {
+        "name": "qbittorrentUsername",
+        "label": "What is your qBitTorrent username?",
+        "type": "text",
+        "initialValue": ""
+      },
+      {
+        "name": "qbittorrentPassword",
+        "label": "What is your qBitTorrent password?",
+        "type": "text",
+        "initialValue": ""
+      }
+    ]
+  },
+  "minVersion": "0.7.6",
+  "services": {
+    "{ServiceName}": {
+      "image": "ghcr.io/manimatter/decluttarr:latest",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "LOG_LEVEL=INFO",
+        "REMOVE_TIMER=10",
+        "REMOVE_FAILED=true",
+        "REMOVE_FAILED_IMPORTS=true",
+        "REMOVE_METADATA_MISSING=true",
+        "REMOVE_MISSING_FILES=true",
+        "REMOVE_ORPHANS=true",
+        "REMOVE_SLOW=true",
+        "REMOVE_STALLED=true",
+        "REMOVE_UNMONITORED=true",
+        "RUN_PERIODIC_RESCANS={\"SONARR\":{\"MISSING\":true,\"CUTOFF_UNMET\":true,\"MAX_CONCURRENT_SCANS\":3,\"MIN_DAYS_BEFORE_RESCAN\":7},\"RADARR\":{\"MISSING\":true,\"CUTOFF_UNMET\": true, \"MAX_CONCURRENT_SCANS\": 3, \"MIN_DAYS_BEFORE_RESCAN\":7}}",
+        "PERMITTED_ATTEMPTS=3",
+        "NO_STALLED_REMOVAL_QBIT_TAG=Don't Kill",
+        "REMOVE_SLOW=true",
+        "MIN_DOWNLOAD_SPEED=100",
+        "FAILED_IMPORT_MESSAGE_PATTERNS=[\"Not a Custom Format upgrade for existing\",\"Not an upgrade for existing\"]"
+        {if Context.radarr}
+        , "RADARR_URL=http://{Context.radarr-name}:7878"
+        , "RADARR_KEY={Context.radarrApiKey}"
+        {/if }
+        {if Context.sonarr}
+        , "SONARR_URL=http://{Context.sonarr-name}:8989"
+        , "SONARR_KEY={Context.sonarrApiKey}"
+        {/if }
+        {if Context.lidarr}
+        , "LIDARR_URL=http://{Context.lidarr-name}:8686"
+        , "LIDARR_KEY={Context.lidarrApiKey}"
+        {/if }
+        {if Context.readarr}
+        , "READARR_URL=http://{Context.readarr-name}:8787"
+        , "READARR_KEY={Context.readarrApiKey}"
+        {/if }
+        {if Context.whisparr}
+        , "WHISPARR_URL=http://{Context.whisparr-name}:6969"
+        , "WHISPARR_KEY={Context.whisparrApiKey}"
+        {/if }
+        {if Context.qbittorrent}
+        , "QBITTORRENT_URL=http://{Context.qbittorrent-name}:8080"
+        , "QBITTORRENT_USERNAME={Context.qbittorrentUsername}"
+        , "QBITTORRENT_PASSWORD={Context.qbittorrentPassword}"
+        {/if }
+      ],
+      "labels": {
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps-official/servapps/Declutarr/icon.png"
+      },
+      "links": [
+        ""
+        {if Context.lidarr}
+        , "{Context.lidarr-name}"
+        {/if}
+        {if Context.sonarr}
+        , "{Context.sonarr-name}"
+        {/if}
+        {if Context.readarr}
+        , "{Context.readarr-name}"
+        {/if}
+        {if Context.radarr}
+        , "{Context.radarr-name}"
+        {/if}
+        {if Context.whisparr}
+        , "{Context.whisparr-name}"
+        {/if}
+        {if Context.qbittorrent}
+        , "{Context.qbittorrent-name}"
+        {/if}
+      ]
+    }
+  }
+}
