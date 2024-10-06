@@ -109,32 +109,20 @@
         "NO_STALLED_REMOVAL_QBIT_TAG=Don't Kill",
         "REMOVE_SLOW=true",
         "MIN_DOWNLOAD_SPEED=100",
-        "FAILED_IMPORT_MESSAGE_PATTERNS=[\"Not a Custom Format upgrade for existing\",\"Not an upgrade for existing\"]"
-        {if Context.radarr}
-        , "RADARR_URL=http://{Context.radarr-name}:7878"
-        , "RADARR_KEY={Context.radarrApiKey}"
-        {/if }
-        {if Context.sonarr}
-        , "SONARR_URL=http://{Context.sonarr-name}:8989"
-        , "SONARR_KEY={Context.sonarrApiKey}"
-        {/if }
-        {if Context.lidarr}
-        , "LIDARR_URL=http://{Context.lidarr-name}:8686"
-        , "LIDARR_KEY={Context.lidarrApiKey}"
-        {/if }
-        {if Context.readarr}
-        , "READARR_URL=http://{Context.readarr-name}:8787"
-        , "READARR_KEY={Context.readarrApiKey}"
-        {/if }
-        {if Context.whisparr}
-        , "WHISPARR_URL=http://{Context.whisparr-name}:6969"
-        , "WHISPARR_KEY={Context.whisparrApiKey}"
-        {/if }
-        {if Context.qbittorrent}
-        , "QBITTORRENT_URL=http://{Context.qbittorrent-name}:8080"
-        , "QBITTORRENT_USERNAME={Context.qbittorrentUsername}"
-        , "QBITTORRENT_PASSWORD={Context.qbittorrentPassword}"
-        {/if }
+        "FAILED_IMPORT_MESSAGE_PATTERNS=[\"Not a Custom Format upgrade for existing\",\"Not an upgrade for existing\"]",
+        "RADARR_URL=http://{Context.radarr-name}:7878",
+        "RADARR_KEY={Context.radarrApiKey}",
+        "SONARR_URL=http://{Context.sonarr-name}:8989",
+        "SONARR_KEY={Context.sonarrApiKey}",
+        "LIDARR_URL=http://{Context.lidarr-name}:8686",
+        "LIDARR_KEY={Context.lidarrApiKey}",
+        "READARR_URL=http://{Context.readarr-name}:8787",
+        "READARR_KEY={Context.readarrApiKey}",
+        "WHISPARR_URL=http://{Context.whisparr-name}:6969",
+        "WHISPARR_KEY={Context.whisparrApiKey}",
+        "QBITTORRENT_URL=http://{Context.qbittorrent-name}:8080",
+        "QBITTORRENT_USERNAME={Context.qbittorrentUsername}",
+        "QBITTORRENT_PASSWORD={Context.qbittorrentPassword}"
       ],
       "labels": {
         "cosmos-force-network-secured": "true",
