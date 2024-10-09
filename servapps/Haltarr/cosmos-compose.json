@@ -74,7 +74,7 @@
       {if Context.downloader}
       {
         "type": "warning",
-        "label": "Please follow this link to setup webhooks on media servers: "
+        "label": "Please follow this link to setup webhooks on media servers: https://github.com/eralumin/haltarr?tab=readme-ov-file#adding-webhooks-to-jellyfin-plex-and-emby"
       }
       {/if}
     ]
