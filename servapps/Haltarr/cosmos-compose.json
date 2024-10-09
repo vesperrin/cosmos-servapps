@@ -64,8 +64,13 @@
         "type": "container"
       },
       {
+        "name": "delugeUsername",
+        "label": "What is your Deluge RPC Username? (leave blank if none)",
+        "type": "text"
+      },
+      {
         "name": "delugePassword",
-        "label": "What is your Deluge password? (leave blank if none)",
+        "label": "What is your Deluge RPC password? (leave blank if none)",
         "type": "text"
       },
       {
@@ -108,6 +113,7 @@
         "SABNZBD_API_KEY={Context.sabnzbdApiKey}",
         "DELUGE_HOST={Context.deluge-name}",
         "DELUGE_PORT=8112",
+        "DELUGE_USERNAME={Context.delugeUsername}",
         "DELUGE_PASSWORD={Context.delugePassword}",
         "QBITTORRENT_HOST={Context.qbittorrent-name}",
         "QBITTORRENT_PORT=8080",
