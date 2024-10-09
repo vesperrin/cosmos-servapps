@@ -1,0 +1,135 @@
+
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "discordWebhookUrl",
+        "label": "What is your Discord Webhool Url?",
+        "initialValue": "",
+        "type": "text"
+      },
+      {
+        "name": "jellyfin",
+        "name-container": "jellyfin-name",
+        "label": "Where is your Jellyfin instance? (leave blank if none)",
+        "type": "container"
+      },
+      {
+        "name": "plex",
+        "name-container": "plex-name",
+        "label": "Where is your Plex instance? (leave blank if none)",
+        "type": "container"
+      },
+      {
+        "name": "emby",
+        "name-container": "emby-name",
+        "label": "Where is your Emby instance? (leave blank if none)",
+        "type": "container"
+      },
+      {
+        "name": "qbittorrent",
+        "name-container": "qbittorrent-name",
+        "label": "Where is your QbitTorrent instance? (leave blank if none)",
+        "type": "container"
+      },
+      {
+        "name": "qbittorrentUsername",
+        "label": "What is your QbitTorrent username? (leave blank if none)",
+        "type": "text"
+      },
+      {
+        "name": "qbittorrentPassword",
+        "label": "What is your QbitTorrent password? (leave blank if none)",
+        "type": "text"
+      },
+      {
+        "name": "deluge",
+        "name-container": "deluge-name",
+        "label": "Where is your Deluge instance? (leave blank if none)",
+        "type": "container"
+      },
+      {
+        "name": "delugeUsername",
+        "label": "What is your Deluge username? (leave blank if none)",
+        "type": "text"
+      },
+      {
+        "name": "delugePassword",
+        "label": "What is your Deluge password? (leave blank if none)",
+        "type": "text"
+      },
+      {
+        "name": "sabnzbd",
+        "name-container": "sabnzbd-name",
+        "label": "Where is your SABnzbd instance? (leave blank if none)",
+        "type": "container"
+      },
+      {
+        "name": "sabnzbdApiKey",
+        "label": "What is your SABnzbd API Key? (leave blank if none)",
+        "type": "text"
+      }
+    ],
+    "post-install": [
+      {if Context.downloader}
+      {
+        "type": "warning",
+        "label": "Please follow this link to setup webhooks on media servers: "
+      }
+      {/if}
+    ]
+  },
+  "minVersion": "0.7.6",
+  "services": {
+    "{ServiceName}": {
+      "image": "ghcr.io/eralumin/haltarr:latest",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "DISCORD_WEBHOOK_URL={Context.discordWebhookUrl}",
+        "SABNZBD_HOST={Context.sabnzbd-name}",
+        "SABNZBD_PORT=8080",
+        "SABNZBD_API_KEY={Context.sabnzbdApiKey}",
+        "DELUGE_HOST={Context.deluge-name}",
+        "DELUGE_PORT=58846",
+        "DELUGE_USERNAME={Context.delugeUsername}",
+        "DELUGE_PASSWORD={Context.delugePassword}",
+        "QBITTORRENT_HOST={Context.qbittorrent-name}",
+        "QBITTORRENT_PORT=8080",
+        "QBITTORRENT_USERNAME={Context.qbittorrentUsername}",
+        "QBITTORRENT_PASSWORD={Context.qbittorrentPassword}"
+      ],
+      "labels": {
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/Haltarr/icon.png"
+      },
+      "links": [
+        ""
+        {if Context.jellyfin}
+        , "{Context.jellyfin-name}"
+        {/if}
+        {if Context.plex}
+        , "{Context.plex-name}"
+        {/if}
+        {if Context.emby}
+        , "{Context.emby-name}"
+        {/if}
+        {if Context.qbittorrent}
+        , "{Context.qbittorrent-name}"
+        {/if}
+        {if Context.deluge}
+        , "{Context.deluge-name}"
+        {/if}
+        {if Context.sabnzbd}
+        , "{Context.sabnzbd-name}"
+        {/if}
+      ]
+    }
+  }
+}
