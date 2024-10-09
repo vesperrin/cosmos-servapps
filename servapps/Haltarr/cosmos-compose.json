@@ -49,11 +49,6 @@
         "type": "container"
       },
       {
-        "name": "delugeUsername",
-        "label": "What is your Deluge username? (leave blank if none)",
-        "type": "text"
-      },
-      {
         "name": "delugePassword",
         "label": "What is your Deluge password? (leave blank if none)",
         "type": "text"
@@ -96,8 +91,7 @@
         "SABNZBD_PORT=8080",
         "SABNZBD_API_KEY={Context.sabnzbdApiKey}",
         "DELUGE_HOST={Context.deluge-name}",
-        "DELUGE_PORT=58846",
-        "DELUGE_USERNAME={Context.delugeUsername}",
+        "DELUGE_PORT=8112",
         "DELUGE_PASSWORD={Context.delugePassword}",
         "QBITTORRENT_HOST={Context.qbittorrent-name}",
         "QBITTORRENT_PORT=8080",
