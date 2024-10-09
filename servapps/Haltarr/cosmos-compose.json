@@ -15,16 +15,31 @@
         "type": "container"
       },
       {
+        "name": "jellyfinApiKey",
+        "label": "What is your Jellyfin API Key? (leave blank if none)",
+        "type": "text"
+      },
+      {
         "name": "plex",
         "name-container": "plex-name",
         "label": "Where is your Plex instance? (leave blank if none)",
         "type": "container"
       },
       {
+        "name": "plexApiKey",
+        "label": "What is your Plex API Key? (leave blank if none)",
+        "type": "text"
+      },
+      {
         "name": "emby",
         "name-container": "emby-name",
         "label": "Where is your Emby instance? (leave blank if none)",
         "type": "container"
+      },
+      {
+        "name": "embyApiKey",
+        "label": "What is your Emby API Key? (leave blank if none)",
+        "type": "text"
       },
       {
         "name": "qbittorrent",
@@ -64,14 +79,6 @@
         "label": "What is your SABnzbd API Key? (leave blank if none)",
         "type": "text"
       }
-    ],
-    "post-install": [
-      {if Context.downloader}
-      {
-        "type": "warning",
-        "label": "Please follow this link to setup webhooks on media servers: https://github.com/eralumin/haltarr?tab=readme-ov-file#adding-webhooks-to-jellyfin-plex-and-emby"
-      }
-      {/if}
     ]
   },
   "minVersion": "0.7.6",
@@ -87,6 +94,15 @@
         "PGID=1000",
         "TZ=auto",
         "DISCORD_WEBHOOK_URL={Context.discordWebhookUrl}",
+        "JELLYFIN_HOST={Context.jellyfin-name}",
+        "JELLYFIN_PORT=8096",
+        "JELLYFIN_API_KEY={Context.jellyfinApiKey}",
+        "PLEX_HOST={Context.plex-name}",
+        "PLEX_PORT=32400",
+        "PLEX_API_KEY={Context.plexApiKey}",
+        "EMBY_HOST={Context.emby-name}",
+        "EMBY_PORT=32400",
+        "EMBY_API_KEY={Context.embyApiKey}",
         "SABNZBD_HOST={Context.sabnzbd-name}",
         "SABNZBD_PORT=8080",
         "SABNZBD_API_KEY={Context.sabnzbdApiKey}",
