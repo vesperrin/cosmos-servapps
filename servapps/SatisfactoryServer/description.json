@@ -1,0 +1,9 @@
+{
+  "name": "SatisfactoryServer",
+  "description": "Dockerized version of the Satisfactory dedicated server.",
+  "longDescription": "<p>The server may run on less than 8GB of RAM, though 8GB - 16GB is still recommended per the <a href=\"https://satisfactory.wiki.gg/wiki/Dedicated_servers#Requirements\" rel=\"nofollow\">the official wiki</a>.</p>",
+  "tags": ["games", "game", "satisfactory", "server"],
+  "repository": "https://github.com/wolveix/satisfactory-server",
+  "image": "wolveix/satisfactory-server:latest",
+  "supported_architectures": ["amd64", "arm64"]
+}

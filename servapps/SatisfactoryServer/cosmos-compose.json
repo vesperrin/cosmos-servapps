@@ -1,0 +1,65 @@
+
+{
+  "cosmos-installer": {
+    "form": [
+    ]
+  },
+  "minVersion": "0.7.6",
+  "services": {
+    "{ServiceName}": {
+      "image": "wolveix/satisfactory-server:latest",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "AUTOSAVENUM=5",
+        "DEBUG=false",
+        "DISABLESEASONALEVENTS=false",
+        "LOG=false",
+        "MAXOBJECTS=2162688",
+        "MAXPLAYERS=4",
+        "MAXTICKRATE=30",
+        "ROOTLESS=false",
+        "SERVERGAMEPORT=7777",
+        "SERVERIP=0.0.0.0",
+        "SERVERSTREAMING=true",
+        "SKIPUPDATE=false",
+        "STEAMBETA=false",
+        "TIMEOUT=30",
+        "VMOVERRIDE=false"
+      ],
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "{ServiceName}-config",
+          "target": "/config"
+        }
+      ],
+      "labels": {
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/SatisfactoryServer/icon.png"
+      },
+      "ports": [
+        "7777:7777/tcp",
+        "7777:7777/udp"
+      ],
+      "links": [
+      ],
+      "deploy": {
+        "resources": {
+          "reservations": {
+            "memory": "4G"
+          },
+          "limits": {
+            "memory": "8G"
+          }
+        }
+      }
+    }
+  }
+}
