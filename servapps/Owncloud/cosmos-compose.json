@@ -13,6 +13,12 @@
         "initialValue": "changeme",
         "type": "password"
       }
+    ],
+    "post-install": [
+      {
+        "type": "warning",
+        "label": "For the first time you need to init the Owncloud container by replacing the command 'server' by the command 'init --force-overwrite' then readd the 'server' after init completion by following container logs."
+      }
     ]
   },
   "minVersion": "0.7.6",
@@ -24,8 +30,8 @@
       "UID": 1000,
       "GID": 1000,
       "environment": [
-        "OCIS_SERVER_NAME={ServerName}",
-        "OCIS_INSECURE=true",
+        "OCIS_SERVER_NAME={ServiceName}",
+        "OCIS_INSECURE=false",
         "OCIS_URL=https://{ServiceName}:9200",
         "OCIS_DOMAIN={ServiceName}:9200",
         "ADMIN_PASSWORD={Context.OCIS_ADMIN_PASSWORD}",
