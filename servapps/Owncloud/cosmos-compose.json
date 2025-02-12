@@ -6,12 +6,6 @@
         "label": "Do you want to make this service admin only?",
         "initialValue": true,
         "type": "checkbox"
-      },
-      {
-        "name": "jellyfin",
-        "name-container": "jellyfin-name",
-        "label": "Where is your Jellyfin instance? (leave blank if none)",
-        "type": "container"
       }
     ]
   },
@@ -25,7 +19,7 @@
       "GID": 1000,
       "environment": [
         "OCIS_INSECURE=true",
-        "OCIS_URL='https://{ServiceName}-meilisearch:9200'",
+        "OCIS_URL=https://{ServiceName}:9200",
         "OCIS_LOG_LEVEL=info"
       ],
       "labels": {
