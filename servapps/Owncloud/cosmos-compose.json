@@ -18,8 +18,13 @@
       "UID": 1000,
       "GID": 1000,
       "environment": [
+        "OCIS_SERVER_NAME={ServerName}",
         "OCIS_INSECURE=true",
         "OCIS_URL=https://{ServiceName}:9200",
+        "OCIS_DOMAIN={ServiceName}:9200",
+        "OCIS_JWT_SECRET={Passwords.0}",
+        "STORAGE_TRANSFER_SECRET={Passwords.1}",
+        "OCIS_MACHINE_AUTH_API_KEY={Passwords.2}",
         "OCIS_LOG_LEVEL=info"
       ],
       "labels": {
