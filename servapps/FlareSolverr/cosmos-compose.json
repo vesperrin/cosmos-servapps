@@ -1,4 +1,3 @@
-
 {
   "cosmos-installer": {
     "form": [
@@ -35,14 +34,10 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/FlareSolverr/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/FlareSolverr/icon.png"
       },
-      "ports": [
-        "8191:8191"
-      ],
-      "links": [
-        "{Context.prowlarr-name}"
-      ]
+      "ports": ["8191:8191"],
+      "links": ["{Context.prowlarr-name}"]
     }
   }
 }

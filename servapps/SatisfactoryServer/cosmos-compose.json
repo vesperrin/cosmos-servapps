@@ -1,8 +1,6 @@
-
 {
   "cosmos-installer": {
-    "form": [
-    ]
+    "form": []
   },
   "minVersion": "0.7.6",
   "services": {
@@ -42,14 +40,10 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/SatisfactoryServer/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/SatisfactoryServer/icon.png"
       },
-      "ports": [
-        "7777:7777/tcp",
-        "7777:7777/udp"
-      ],
-      "links": [
-      ],
+      "ports": ["7777:7777/tcp", "7777:7777/udp"],
+      "links": [],
       "deploy": {
         "resources": {
           "reservations": {

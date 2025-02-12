@@ -1,0 +1,20 @@
+{
+  "name": "Owncloud",
+  "description": "The new and most secure version of ownCloud real-time content collaboration platform.",
+  "longDescription": "<p>Offers file sharing and collaboration trusted by 200+ million users worldwide regardless of device or location.</p>",
+  "tags": [
+    "storage",
+    "file sharing",
+    "syncing",
+    "encryption",
+    "collaboration",
+    "windows",
+    "linux",
+    "macos",
+    "self-hosted",
+    "owncloud"
+  ],
+  "repository": "https://github.com/owncloud/ocis",
+  "image": "https://hub.docker.com/r/owncloud/ocis",
+  "supported_architectures": ["amd64", "arm64"]
+}

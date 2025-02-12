@@ -2,8 +2,25 @@
   "name": "Haltarr",
   "description": "Pauses download clients when there is activity on media servers.",
   "longDescription": "<p>Haltarr is a service that pauses or resumes download clients (SABnzbd, Deluge, qBitTorrent) when there is activity on media servers (Jellyfin, Plex,Emby). It also notifies Discord of these events via webhooks.</p>",
-  "tags": ["download", "torrent", "usenet", "automated", "downloader", "media", "windows", "linux", "macos", "media server", "emby", "jellyfin", "plex", "sabnzbd", "deluge", "qbittorrent"],
-  "repository": "https://github.com/eralumin/haltarr",
-  "image": "https://ghcr.io/eralumin/haltarr:latest",
+  "tags": [
+    "download",
+    "torrent",
+    "usenet",
+    "automated",
+    "downloader",
+    "media",
+    "windows",
+    "linux",
+    "macos",
+    "media server",
+    "emby",
+    "jellyfin",
+    "plex",
+    "sabnzbd",
+    "deluge",
+    "qbittorrent"
+  ],
+  "repository": "https://github.com/vesperrin/haltarr",
+  "image": "https://ghcr.io/vesperrin/haltarr:latest",
   "supported_architectures": ["amd64", "arm64"]
 }

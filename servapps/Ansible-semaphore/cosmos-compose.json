@@ -59,7 +59,7 @@
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
         "cosmos-persistent-env": "MYSQL_ROOT_PASSWORD, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD",
-        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/Ansible-semaphore/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Ansible-semaphore/icon.png"
       },
       "networks": {
         "{ServiceName}-db": {}
@@ -125,7 +125,7 @@
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
         "cosmos-persistent-env": "MYSQL_ROOT_PASSWORD, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD",
-        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/Ansible-semaphore/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Ansible-semaphore/icon.png"
       },
       "networks": {
         "{ServiceName}-db": {}

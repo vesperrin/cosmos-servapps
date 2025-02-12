@@ -36,7 +36,7 @@
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
         "cosmos-persistent-env": "JELLYFIN_URL, MEILI_URL, MEILI_MASTER_KEY",
-        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/Jellysearch/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Jellysearch/icon.png"
       },
       "depends_on": [
         "{ServiceName}-meilisearch"
@@ -103,7 +103,7 @@
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
         "cosmos-persistent-env": "MEILI_MASTER_KEY",
-        "cosmos-icon": "https://eralumin.github.io/cosmos-servapps/servapps/Jellysearch/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Jellysearch/icon.png"
       },
       "volumes": [
         {
