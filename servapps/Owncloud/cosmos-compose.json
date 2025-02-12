@@ -6,6 +6,12 @@
         "label": "Do you want to make this service admin only?",
         "initialValue": true,
         "type": "checkbox"
+      },
+      {
+        "name": "OCIS_ADMIN_PASSWORD",
+        "label": "What is the admin password?",
+        "initialValue": "changeme",
+        "type": "password"
       }
     ]
   },
@@ -22,6 +28,7 @@
         "OCIS_INSECURE=true",
         "OCIS_URL=https://{ServiceName}:9200",
         "OCIS_DOMAIN={ServiceName}:9200",
+        "ADMIN_PASSWORD={Context.OCIS_ADMIN_PASSWORD}",
         "OCIS_JWT_SECRET={Passwords.0}",
         "STORAGE_TRANSFER_SECRET={Passwords.1}",
         "OCIS_MACHINE_AUTH_API_KEY={Passwords.2}",
