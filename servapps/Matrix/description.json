@@ -1,0 +1,21 @@
+{
+  "name": "Matrix",
+  "description": "An open network for secure, decentralized communication.",
+  "longDescription": "<p>Chat with friends, family, communities and co-workers.</p>",
+  "tags": [
+    "social",
+    "federation",
+    "open-source",
+    "self-hosted",
+    "federated",
+    "community",
+    "moderation",
+    "windows",
+    "linux",
+    "macos",
+    "docker"
+  ],
+  "repository": "https://github.com/element-hq/synapse",
+  "image": "https://hub.docker.com/r/matrixdotorg/synapse",
+  "supported_architectures": ["amd64", "arm64"]
+}

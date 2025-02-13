@@ -1,0 +1,108 @@
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "adminOnly",
+        "label": "Do you want to make this service admin only?",
+        "initialValue": false,
+        "type": "checkbox"
+      }
+    ]
+  },
+  "minVersion": "0.7.6",
+  "services": {
+    "{ServiceName}": {
+      "image": "matrixdotorg/synapse:latest",
+      "container_name": "{ServiceName}",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "TZ=auto",
+        "SYNAPSE_SERVER_NAME={Hostnames.{StaticServiceName}.{StaticServiceName}.host}",
+        "SYNAPSE_REPORT_STATS=true",
+        "SYNAPSE_CONFIG_PATH=/config/homeserver.yaml",
+        "SYNAPSE_DATA_DIR=/data",
+        "SYNAPSE_LOG_LEVEL=info"
+      ],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-persistent-env": "SYNAPSE_CONFIG_PATH",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Matrix/icon.png"
+      },
+      "volumes": [
+        {
+          "source": "{ServiceName}-config",
+          "target": "/config",
+          "type": "volume"
+        },
+        {
+          "source": "{ServiceName}-data",
+          "target": "/data",
+          "type": "volume"
+        }
+      ],
+      "ports": ["8448:8448/tcp"],
+      "depends_on": ["{ServiceName}-db"],
+      "networks": {
+        "{ServiceName}-db": {}
+      },
+      "routes": [
+        {
+          "name": "{ServiceName}",
+          "description": "Expose {ServiceName} to the web",
+          "useHost": true,
+          "target": "http://{ServiceName}:8448",
+          "mode": "SERVAPP",
+          "Timeout": 14400000,
+          "ThrottlePerMinute": 12000,
+          "BlockCommonBots": true,
+          "SmartShield": {
+            "Enabled": true,
+            "PolicyStrictness": 3,
+            "PerUserRequestLimit": 12000,
+            "PerUserSimultaneous": 100,
+            "MaxGlobalSimultaneous": 1000
+          }
+        }
+      ],
+      "links": []
+    },
+    "{ServiceName}-db": {
+      "image": "postgres:15-alpine",
+      "container_name": "{ServiceName}-db",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "POSTGRES_USER=synapse",
+        "POSTGRES_PASSWORD={Passwords.0}",
+        "POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+      ],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-persistent-env": "POSTGRES_USER, POSTGRES_PASSWORD",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Matrix/icon.png"
+      },
+      "volumes": [
+        {
+          "source": "{ServiceName}-data",
+          "target": "/var/lib/postgresql/data",
+          "type": "volume"
+        }
+      ],
+      "networks": {
+        "{ServiceName}-db": {}
+      }
+    }
+  },
+  "networks": {
+    "{ServiceName}-db": {}
+  }
+}

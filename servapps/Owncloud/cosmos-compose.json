@@ -33,7 +33,7 @@
         "OCIS_SERVER_NAME={ServiceName}",
         "OCIS_INSECURE=false",
         "OCIS_URL=https://{ServiceName}:9200",
-        "OCIS_DOMAIN={ServiceName}:9200",
+        "OCIS_DOMAIN=https://{Hostnames.{StaticServiceName}.{StaticServiceName}.host}",
         "ADMIN_PASSWORD={Context.OCIS_ADMIN_PASSWORD}",
         "OCIS_JWT_SECRET={Passwords.0}",
         "STORAGE_TRANSFER_SECRET={Passwords.1}",
