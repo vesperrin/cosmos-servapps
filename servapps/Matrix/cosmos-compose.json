@@ -48,7 +48,8 @@
       "ports": ["8448:8448/tcp"],
       "depends_on": ["{ServiceName}-db"],
       "networks": {
-        "{ServiceName}-db": {}
+        "{ServiceName}-db": {},
+        "{ServiceName}-web": {}
       },
       "routes": [
         {
@@ -92,7 +93,7 @@
       },
       "volumes": [
         {
-          "source": "{ServiceName}-data",
+          "source": "{ServiceName}-db-data",
           "target": "/var/lib/postgresql/data",
           "type": "volume"
         }
@@ -100,9 +101,36 @@
       "networks": {
         "{ServiceName}-db": {}
       }
+    },
+    "{ServiceName}-web": {
+      "image": "vectorim/element-web:latest",
+      "container_name": "{ServiceName}-web",
+      "restart": "unless-stopped",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-persistent-env": "POSTGRES_USER, POSTGRES_PASSWORD",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Matrix/icon.png"
+      },
+      "volumes": [
+        {
+          "source": "{ServiceName}-web-config",
+          "target": "/app/config.json",
+          "type": "volume"
+        }
+      ],
+      "networks": {
+        "{ServiceName}-web": {}
+      }
     }
   },
   "networks": {
-    "{ServiceName}-db": {}
+    "{ServiceName}-db": {},
+    "{ServiceName}-web": {}
   }
 }
