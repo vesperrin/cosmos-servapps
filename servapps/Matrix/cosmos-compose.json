@@ -46,7 +46,9 @@
         }
       ],
       "ports": ["8448:8448/tcp"],
-      "depends_on": ["{ServiceName}-db"],
+      "depends_on": [
+        "{ServiceName}-db"
+      ],
       "networks": {
         "{ServiceName}-db": {},
         "{ServiceName}-web": {}
@@ -120,7 +122,7 @@
       "volumes": [
         {
           "source": "{ServiceName}-web-config",
-          "target": "/app/config.json",
+          "target": "/app",
           "type": "volume"
         }
       ],
