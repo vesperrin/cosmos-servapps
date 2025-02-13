@@ -53,11 +53,7 @@
         }
       ],
       "ports": ["6167:6167"],
-      "depends_on": [
-        "{ServiceName}-db"
-      ],
       "networks": {
-        "{ServiceName}-db": {},
         "{ServiceName}-web": {}
       },
       "routes": [
@@ -132,7 +128,6 @@
     }
   },
   "networks": {
-    "{ServiceName}-db": {},
     "{ServiceName}-web": {}
   }
 }
