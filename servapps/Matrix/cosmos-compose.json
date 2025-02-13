@@ -124,6 +124,7 @@
           "type": "volume"
         }
       ],
+      "ports": ["80:80"],
       "networks": {
         "{ServiceName}-web": {}
       }
