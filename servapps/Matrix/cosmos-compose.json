@@ -47,12 +47,13 @@
       ],
       "ports": ["8448:8448/tcp"],
       "depends_on": [
-        {
-          "{ServiceName}-db": {
-            "condition": "service_started"
-          }
-        }
+        "{ServiceName}-db"
       ],
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "curl -fSs http://{ServiceName}:8008/health || exit 1"
+        ],
       "networks": {
         "{ServiceName}-db": {},
         "{ServiceName}-web": {}
