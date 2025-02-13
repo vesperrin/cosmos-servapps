@@ -28,9 +28,9 @@
         "CONDUWUIT_ALLOW_FEDERATION=true",
         "CONDUWUIT_ALLOW_CHECK_FOR_UPDATES=true",
         "CONDUWUIT_TRUSTED_SERVERS=[\"matrix.org\"]",
-        "CONDUWUIT_ADDRESS=http://{ServiceName}:6167",
+        "CONDUWUIT_ADDRESS=0.0.0.0",
         "CONDUWUIT_CONFIG=/config/conduwuit.toml",
-        "CONDUWUIT_WELL_KNOWN=|{client=https://{Hostnames.{StaticServiceName}.{StaticServiceName}.host},server={Hostnames.{StaticServiceName}.{StaticServiceName}.host}:443}"
+        "CONDUWUIT_WELL_KNOWN={client=https://{Hostnames.{StaticServiceName}.{StaticServiceName}.host},server={Hostnames.{StaticServiceName}.{StaticServiceName}.host}:443}"
       ],
       "labels": {
         "cosmos-stack": "{ServiceName}",
