@@ -127,7 +127,26 @@
       "ports": ["80:80"],
       "networks": {
         "{ServiceName}-web": {}
-      }
+      },
+      "routes": [
+        {
+          "name": "{ServiceName}-web",
+          "description": "Expose {ServiceName} Client to the web",
+          "useHost": true,
+          "target": "http://{ServiceName}-web:80",
+          "mode": "SERVAPP",
+          "Timeout": 14400000,
+          "ThrottlePerMinute": 12000,
+          "BlockCommonBots": true,
+          "SmartShield": {
+            "Enabled": true,
+            "PolicyStrictness": 3,
+            "PerUserRequestLimit": 12000,
+            "PerUserSimultaneous": 100,
+            "MaxGlobalSimultaneous": 1000
+          }
+        }
+      ]
     }
   },
   "networks": {
