@@ -47,7 +47,11 @@
       ],
       "ports": ["8448:8448/tcp"],
       "depends_on": [
-        "{ServiceName}-db"
+        {
+          "{ServiceName}-db": {
+            "condition": "service_started"
+          }
+        }
       ],
       "networks": {
         "{ServiceName}-db": {},
