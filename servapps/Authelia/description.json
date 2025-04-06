@@ -1,0 +1,9 @@
+{
+    "name": "Authelia",
+    "description": "The Single Sign-On Multi-Factor portal for web apps ",
+    "longDescription": "<p>Authelia is an open-source authentication and authorization server providing two-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for reverse proxies by allowing, denying, or redirecting requests.</p>",
+    "tags": ["sso", "management", "Identity", "self-hosted"],
+    "repository": "https://github.com/authelia/authelia",
+    "image": "https://hub.docker.com/r/authelia/authelia",
+    "supported_architectures": ["amd64", "arm64"]
+}
