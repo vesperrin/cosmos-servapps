@@ -1,0 +1,9 @@
+{
+  "name": "Trailarr",
+  "longDescription": "<p>Manage trailers for your Radarr and Sonarr libraries.</p>",
+  "description": "Trailarr is a Docker application to download and manage trailers for your Radarr and Sonarr libraries. ",
+  "tags": ["download", "trailers", "automation", "downloader", "media", "collection", "sonarr", "radarr", "windows", "linux", "macos", "web interface", "movie management", "media management"],
+  "repository": "https://github.com/nandyalu/trailarr",
+  "image": "https://hub.docker.com/r/nandyalu/trailarr",
+  "supported_architectures": ["amd64", "arm64"]
+  }
