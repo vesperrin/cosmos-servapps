@@ -1,0 +1,9 @@
+{
+  "name": "Collabora Online",
+  "longDescription": "<p>Collabora Online is a collaborative online office suite based on LibreOffice technology. This is also the source for the Collabora Office apps for iOS and Android. </p>",
+  "description": "Secure Document Collaboration. Controlled by You.",
+  "tags": ["syncing", "collaboration", "windows", "linux", "macos", "self-hosted", "office"],
+  "repository": "https://github.com/CollaboraOnline/online",
+  "image": "https://hub.docker.com/r/collabora/code",
+  "supported_architectures": ["amd64", "arm64"]
+}
