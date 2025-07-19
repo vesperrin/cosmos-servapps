@@ -1,0 +1,9 @@
+{
+    "name": "Lldap",
+    "description": "Light LDAP implementation",
+    "longDescription": "<p>This project is a lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication.</p>",
+    "tags": ["ldap", "identity", "self-hosted", "authentication", "security"],
+    "repository": "https://github.com/lldap/lldap",
+    "image": "https://hub.docker.com/r/lldap/lldap",
+    "supported_architectures": ["amd64", "arm64"]
+}
