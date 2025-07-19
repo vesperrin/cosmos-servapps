@@ -1,6 +1,12 @@
 {
   "cosmos-installer": {
     "form": [
+      {
+        "name": "certsVolume",
+        "label": "On which Docker volume do you store your local certs?",
+        "initialValue": "Certs",
+        "type": "text"
+      }
     ]
   },
   "minVersion": "0.9.0",
@@ -10,13 +16,24 @@
       "container_name": "{ServiceName}",
       "restart": "unless-stopped",
       "environment": [
-        "X_AUTHELIA_CONFIG_FILTERS=template"
+        "X_AUTHELIA_CONFIG_FILTERS=template",
+        "AUTHELIA_CERTIFICATES_DIRECTORY=/config/certificates",
+        "AUTHELIA_LOG_LEVEL=info",
+        "AUTHELIA_LOG_FORMAT=json",
+        "AUTHELIA_LOG_FILE_PATH=/config/authelia.log",
+        "AUTHELIA_LOG_KEEP_STDOUT=true",
+        "AUTHELIA_STORAGE_ENCRYPTION_KEY={Passwords.1}",
+        "AUTHELIA_STORAGE_POSTGRES_ADDRESS=tcp://{ServiceName}-postgres:5432",
+        "AUTHELIA_STORAGE_POSTGRES_DATABASE=authelia",
+        "AUTHELIA_STORAGE_POSTGRES_SCHEMA=public",
+        "AUTHELIA_STORAGE_POSTGRES_USERNAME=AUTHELIA",
+        "AUTHELIA_STORAGE_POSTGRES_PASSWORD={Passwords.0}"
       ],
       "labels": {
-        "cosmos-persistent-env": "",
+        "cosmos-persistent-env": "AUTHELIA_STORAGE_ENCRYPTION_KEY, AUTHELIA_STORAGE_POSTGRES_ADDRESS, AUTHELIA_STORAGE_POSTGRES_PASSWORD",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/Keycloak/icon.png",
+        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/Authelia/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -35,6 +52,11 @@
           "source": "{ServiceName}-logs",
           "target": "/var/log/authelia/",
           "type": "volume"
+        },
+        {
+          "source": "{Context.certsVolume}",
+          "target": "/config/certificates",
+          "type": "volume"
         }
       ],
       "routes": [
@@ -52,6 +74,40 @@
           }
         }
       ]
+    },
+    "{ServiceName}-postgres": {
+      "image": "postgres:17-alpine",
+      "container_name": "{ServiceName}-postgres",
+      "hostname": "{ServiceName}-postgres",
+      "restart": "unless-stopped",
+      "networks": {
+        "{ServiceName}-postgres": {}
+      },
+      "stop_grace_period": 5,
+      "security_opt": [
+        "seccomp:unconfined",
+        "apparmor:unconfined"
+      ],
+      "volumes": [
+        {
+          "source": "{ServiceName}-postgres-data",
+          "target": "/var/lib/postgresql/data",
+          "type": "volume"
+        }
+      ],
+      "labels": {
+        "cosmos-persistent-env": "POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD",
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}"
+      },
+      "environment": [
+        "POSTGRES_DB=authelia",
+        "POSTGRES_USER=authelia",
+        "POSTGRES_PASSWORD={Passwords.0}"
+      ]
     }
+  },
+  "networks": {
+    "{ServiceName}-postgres": {}
   }
 }
