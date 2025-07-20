@@ -8,7 +8,7 @@
         "type": "text"
       },
       {
-        "name": "domainTLD",
+        "name": "domainTld",
         "label": "What is the TLD of your domain? (for ex 'com' is the TLD of 'google.com')",
         "initialValue": "com",
         "type": "text"
