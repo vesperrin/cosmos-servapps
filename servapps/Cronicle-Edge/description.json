@@ -1,0 +1,9 @@
+{
+    "name": "Cronicle Edge",
+    "longDescription": "<p>This is a fork of jhuckaby/Cronicle with quite a few new features and APIs. The main purpose of this fork is to make Cronicle work better with Docker, and add some experimental features that are only expected in Cronicle 2.0 (a.k.a. Orchestra)</p>",
+    "description": "Cronicle V2 (Orchestra) community prototype",
+    "tags": ["automation", "cron", "self-hosted", "scheduler"],
+    "repository": "https://github.com/cronicle-edge/cronicle-edge",
+    "image": "https://hub.docker.com/r/cronicle-edge/cronicle-edge",
+    "supported_architectures": ["amd64", "arm64"]
+}

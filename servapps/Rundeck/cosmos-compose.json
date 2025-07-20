@@ -1,123 +1,123 @@
 {
-  "cosmos-installer": {
-    "form": [
-      {
-        "name": "adminOnly",
-        "label": "Do you want to make this service admin only?",
-        "initialValue": true,
-        "type": "checkbox"
-      }
-    ],
-    "post-install": [
-      {
-        "type": "info",
-        "label": "Default credentials for Rundeck are admin/admin."
-      }
-    ]
-  },
-  "minVersion": "0.7.6",
-  "services": {
-    "{ServiceName}": {
-      "image": "rundeck/rundeck:SNAPSHOT",
-      "container_name": "{ServiceName}",
-      "restart": "unless-stopped",
-      "depends_on": [
-        "{ServiceName}-db"
-      ],
-      "UID": 1000,
-      "GID": 1000,
-      "environment": [
-        "PUID=1000",
-        "PGID=1000",
-        "TZ=auto",
-        "RUNDECK_DATABASE_DRIVER=org.postgresql.Driver",
-        "RUNDECK_DATABASE_USERNAME=rundeck",
-        "RUNDECK_DATABASE_PASSWORD={Passwords.0}",
-        "RUNDECK_DATABASE_URL=jdbc:postgresql://{ServiceName}-db/rundeck?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true",
-        "RUNDECK_GRAILS_URL=https://{Hostnames.{StaticServiceName}.{StaticServiceName}.host}"
-      ],
-      "labels": {
-        "cosmos-stack": "{ServiceName}",
-        "cosmos-stack-main": "{ServiceName}",
-        "cosmos-force-network-secured": "true",
-        "cosmos-auto-update": "true",
-        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Rundeck/icon.png"
-      },
-      "volumes": [
-        {
-          "type": "bind",
-          "source": "/dev/null",
-          "target": "/home/rundeck/etc/rundeckpro-license.key"
-        },
-        {
-          "type": "volume",
-          "source": "{ServiceName}-config",
-          "target": "/home/rundeck/server"
-        },
-        {
-          "type": "volume",
-          "source": "{ServiceName}-logs",
-          "target": "/home/rundeck/var/logs"
-        }
-      ],
-      "networks": {
-        "{ServiceName}-db": {}
-      },
-      "routes": [
-        {
-          "name": "{ServiceName}",
-          "description": "Expose {ServiceName} to the web",
-          "useHost": true,
-          "target": "http://{ServiceName}:4440",
-          "mode": "SERVAPP",
-          "Timeout": 14400000,
-          "ThrottlePerMinute": 12000,
-          "BlockCommonBots": true,
-          "SmartShield": {
-            "Enabled": true
-          },
-          "AuthEnabled": true
-          {if Context.adminOnly}
-           , "AuthAdmin": true
-          {/if}
-        }
-      ]
+    "cosmos-installer": {
+        "form": [
+            {
+                "name": "adminOnly",
+                "label": "Do you want to make this service admin only?",
+                "initialValue": true,
+                "type": "checkbox"
+            }
+        ],
+        "post-install": [
+            {
+                "type": "info",
+                "label": "Default credentials for Rundeck are admin/admin."
+            }
+        ]
     },
-    "{ServiceName}-db": {
-      "image": "postgres:alpine",
-      "container_name": "{ServiceName}-db",
-      "restart": "unless-stopped",
-      "UID": 1000,
-      "GID": 1000,
-      "environment": [
-        "PUID=1000",
-        "PGID=1000",
-        "TZ=auto",
-        "POSTGRES_DB=rundeck",
-        "POSTGRES_USER=rundeck",
-        "POSTGRES_PASSWORD={Passwords.0}"
-      ],
-      "labels": {
-        "cosmos-stack": "{ServiceName}",
-        "cosmos-stack-main": "{ServiceName}",
-        "cosmos-force-network-secured": "true",
-        "cosmos-auto-update": "true",
-        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Rundeck/icon.png"
-      },
-      "volumes": [
-        {
-          "type": "volume",
-          "source": "{ServiceName}-data",
-          "target": "/var/lib/postgresql/data"
+    "minVersion": "0.7.6",
+    "services": {
+        "{ServiceName}": {
+            "image": "rundeck/rundeck:SNAPSHOT",
+            "container_name": "{ServiceName}",
+            "restart": "unless-stopped",
+            "UID": 1000,
+            "GID": 1000,
+            "environment": [
+                "PUID=1000",
+                "PGID=1000",
+                "TZ=auto",
+                "RUNDECK_DATABASE_DRIVER=org.postgresql.Driver",
+                "RUNDECK_DATABASE_USERNAME=rundeck",
+                "RUNDECK_DATABASE_PASSWORD={Passwords.0}",
+                "RUNDECK_DATABASE_URL=jdbc:postgresql://{ServiceName}-db/rundeck?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true",
+                "RUNDECK_GRAILS_URL=https://{Hostnames.{StaticServiceName}.{StaticServiceName}.host}"
+            ],
+            "labels": {
+                "cosmos-stack": "{ServiceName}",
+                "cosmos-stack-main": "{ServiceName}",
+                "cosmos-force-network-secured": "true",
+                "cosmos-auto-update": "true",
+                "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Rundeck/icon.png"
+            },
+            "volumes": [
+                {
+                    "type": "bind",
+                    "source": "/dev/null",
+                    "target": "/home/rundeck/etc/rundeckpro-license.key"
+                },
+                {
+                    "type": "volume",
+                    "source": "{ServiceName}-config",
+                    "target": "/home/rundeck/server"
+                },
+                {
+                    "type": "volume",
+                    "source": "{ServiceName}-logs",
+                    "target": "/home/rundeck/var/logs"
+                }
+            ],
+            "depends_on": [
+                "{ServiceName}-db"
+            ],
+            "networks": {
+                "{ServiceName}-db": {}
+            },
+            "routes": [
+                {
+                    "name": "{ServiceName}",
+                    "description": "Expose {ServiceName} to the web",
+                    "useHost": true,
+                    "target": "http://{ServiceName}:4440",
+                    "mode": "SERVAPP",
+                    "Timeout": 14400000,
+                    "ThrottlePerMinute": 12000,
+                    "BlockCommonBots": true,
+                    "SmartShield": {
+                        "Enabled": true
+                    },
+                    "AuthEnabled": true
+                    {if Context.adminOnly}
+                    , "AuthAdmin": true
+                    {/if}
+                }
+            ]
+        },
+        "{ServiceName}-db": {
+            "image": "postgres:alpine",
+            "container_name": "{ServiceName}-db",
+            "restart": "unless-stopped",
+            "UID": 1000,
+            "GID": 1000,
+            "environment": [
+                "PUID=1000",
+                "PGID=1000",
+                "TZ=auto",
+                "POSTGRES_DB=rundeck",
+                "POSTGRES_USER=rundeck",
+                "POSTGRES_PASSWORD={Passwords.0}"
+            ],
+            "labels": {
+                "cosmos-stack": "{ServiceName}",
+                "cosmos-stack-main": "{ServiceName}",
+                "cosmos-force-network-secured": "true",
+                "cosmos-auto-update": "true",
+                "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Rundeck/icon.png"
+            },
+            "volumes": [
+                {
+                    "type": "volume",
+                    "source": "{ServiceName}-data",
+                    "target": "/var/lib/postgresql/data"
+                }
+            ],
+            "networks": {
+                "{ServiceName}-db": {}
+            }
         }
-      ],
-      "networks": {
-        "{ServiceName}-db": {}
-      }
-    }
-  },
+    },
 
-  "networks": {
-    "{ServiceName}-db": {}
-  }
+    "networks": {
+        "{ServiceName}-db": {}
+    }
 }
