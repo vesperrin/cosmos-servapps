@@ -4,6 +4,6 @@
     "description": "Cronicle V2 (Orchestra) community prototype",
     "tags": ["automation", "cron", "self-hosted", "scheduler"],
     "repository": "https://github.com/cronicle-edge/cronicle-edge",
-    "image": "https://hub.docker.com/r/cronicle-edge/cronicle-edge",
+    "image": "https://ghcr.io/cronicle-edge/cronicle-edge",
     "supported_architectures": ["amd64", "arm64"]
 }
