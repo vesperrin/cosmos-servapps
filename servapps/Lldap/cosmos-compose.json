@@ -12,12 +12,6 @@
         "label": "What is the TLD of your domain? (for ex 'com' is the TLD of 'google.com')",
         "initialValue": "com",
         "type": "text"
-      },
-      {
-        "name": "adminOnly",
-        "label": "Do you want to make this service admin only?",
-        "initialValue": false,
-        "type": "checkbox"
       }
     ]
   },
@@ -69,10 +63,8 @@
           "SmartShield": {
             "Enabled": true
           },
-          {if Context.adminOnly}
-            , "AuthEnabled": true,
-            "AuthAdmin": true
-          {/if}
+          "AuthEnabled": true,
+          "AuthAdmin": true
         }
       ]
     }
