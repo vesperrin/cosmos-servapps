@@ -1,4 +1,4 @@
-{ 
+{
   "cosmos-installer": {
     "form": [
       {
@@ -33,7 +33,7 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/CodeServer/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/CodeServer/icon.png"
       },
       "volumes": [
         {
@@ -41,13 +41,15 @@
           "target": "/config",
           "type": "volume"
         }
-        {if Context.workspacePath}
-        , {
+        {if Context.workspacePath
+        },
+        {
           "source": "{Context.workspacePath}",
           "target": "/workspace",
           "type": "bind"
         }
-        {/if}
+        {/if
+        }
       ],
       "routes": [
         {
@@ -63,9 +65,11 @@
             "Enabled": true
           },
           "AuthEnabled": true
-          {if Context.adminOnly}
-           , "AuthAdmin": true
-          {/if}
+          {if Context.adminOnly
+          },
+          "AuthAdmin": true
+          {/if
+          }
         }
       ]
     }

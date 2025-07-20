@@ -1,4 +1,4 @@
-{ 
+{
   "cosmos-installer": {
     "form": [
       {
@@ -31,9 +31,18 @@
         "initialValue": "starttls",
         "type": "select",
         "options": [
-          ["starttls", "starttls"],
-          ["force_tls", "force_tls"],
-          ["off", "off"]
+          [
+            "starttls",
+            "starttls"
+          ],
+          [
+            "force_tls",
+            "force_tls"
+          ],
+          [
+            "off",
+            "off"
+          ]
         ]
       },
       {
@@ -42,9 +51,18 @@
         "initialValue": "Plain",
         "type": "select",
         "options": [
-          ["Plain", "Plain"],
-          ["Login ", "Login"],
-          ["Xoauth2", "Xoauth2"]
+          [
+            "Plain",
+            "Plain"
+          ],
+          [
+            "Login ",
+            "Login"
+          ],
+          [
+            "Xoauth2",
+            "Xoauth2"
+          ]
         ]
       }
     ]
@@ -75,7 +93,6 @@
         "SIGNUPS_VERIFY_RESEND_TIME=3600",
         "SIGNUPS_VERIFY_RESEND_LIMIT=5",
         "SIGNUPS_DOMAINS_WHITELIST={Hostnames.{StaticServiceName}.{StaticServiceName}.host}",
-
         "SMTP_HOST={Context.SMTP_SERVER}",
         "SMTP_FROM=vaultwarden@{Hostnames.{StaticServiceName}.{StaticServiceName}.host}",
         "SMTP_FROM_NAME=Vaultwarden",
@@ -89,7 +106,7 @@
         "cosmos-persistent-env": "ADMIN_TOKEN",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Vaultwarden/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Vaultwarden/icon.png"
       },
       "volumes": [
         {

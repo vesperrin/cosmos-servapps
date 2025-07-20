@@ -30,7 +30,7 @@
         "cosmos-persistent-env": "MYSQL_PASSWORD, REDIS_HOST_PASSWORD, MYSQL_DATABASE, MYSQL_USER",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Nextcloud/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Nextcloud/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -48,14 +48,16 @@
           "target": "/var/www/html/custom_apps",
           "type": "volume"
         }
-      {if Context.dataPath}
-      , {
-        "source": "{Context.dataPath}",
-        "target": "/var/www/html/data",
-        "type": "bind"
-      }
-      {/if}
-    ],
+      {if Context.dataPath
+        },
+        {
+          "source": "{Context.dataPath}",
+          "target": "/var/www/html/data",
+          "type": "bind"
+        }
+      {/if
+        }
+      ],
       "routes": [
         {
           "Name": "{ServiceName}_caldav",
@@ -118,7 +120,6 @@
         }
       ]
     },
-    
     "{ServiceName}-mariadb": {
       "image": "mariadb:10.11",
       "container_name": "{ServiceName}-mariadb",
@@ -154,7 +155,6 @@
         "MARIADB_ROOT_PASSWORD={Passwords.1}"
       ]
     },
-
     "{ServiceName}-redis": {
       "image": "bitnami/redis:latest",
       "container_name": "{ServiceName}-redis",
@@ -187,9 +187,7 @@
       ]
     }
   },
-
   "networks": {
-    "{ServiceName}-databases": {
-    }
+    "{ServiceName}-databases": {}
   }
 }

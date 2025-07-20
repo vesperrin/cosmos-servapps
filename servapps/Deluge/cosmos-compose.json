@@ -1,4 +1,4 @@
-{ 
+{
   "cosmos-installer": {
     "form": [
       {
@@ -35,7 +35,7 @@
       "labels": {
         "cosmos-network-name": "AUTO",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Deluge/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Deluge/icon.png"
       },
       "volumes": [
         {
@@ -43,13 +43,15 @@
           "target": "/config",
           "type": "volume"
         }
-        {if Context.downloadPath}
-        , {
+        {if Context.downloadPath
+        },
+        {
           "source": "{Context.downloadPath}",
           "target": "/downloads",
           "type": "bind"
         }
-        {/if}
+        {/if
+        }
       ],
       "routes": [
         {
@@ -65,9 +67,11 @@
             "Enabled": true
           },
           "AuthEnabled": true
-          {if Context.adminOnly}
-           , "AuthAdmin": true
-          {/if}
+          {if Context.adminOnly
+          },
+          "AuthAdmin": true
+          {/if
+          }
         }
       ]
     }

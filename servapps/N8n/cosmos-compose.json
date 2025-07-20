@@ -18,7 +18,7 @@
         "cosmos-persistent-env": "DB_POSTGRESDB_PORT, DB_POSTGRESDB_PORT, DB_POSTGRESDB_DATABASE, DB_POSTGRESDB_USER, DB_POSTGRESDB_PASSWORD",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/N8n/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/N8n/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -31,7 +31,7 @@
           "target": "/home/node/.n8n",
           "type": "volume"
         }
-    ],
+      ],
       "routes": [
         {
           "name": "{ServiceName}",
@@ -48,7 +48,6 @@
         }
       ]
     },
-    
     "{ServiceName}-postgres": {
       "image": "postgres:15-alpine",
       "container_name": "{ServiceName}-postgres",
@@ -81,9 +80,7 @@
       ]
     }
   },
-
   "networks": {
-    "{ServiceName}-postgres": {
-    }
+    "{ServiceName}-postgres": {}
   }
 }

@@ -243,85 +243,96 @@
         "TZ=auto",
         "DN_URLBASE=/",
         "DN_LOG_FILE=/config/app.log",
-        "DN_HTTP_LOG=/config/http.log"
-        {if Context.lidarr}
-        , "DN_LIDARR_0_NAME={Context.lidarr-name}",
-          "DN_LIDARR_0_URL=http://{Context.lidarr-name}:8686",
-          "DN_LIDARR_0_API_KEY={Context.lidarrApiKey}",
-          "DN_LIDARR_0_USERNAME={Context.lidarrUser}",
-          "DN_LIDARR_0_PASSWORD={Context.lidarrPassword}"
-        {/if}
-        {if Context.prowlarr}
-        , "DN_PROWLARR_0_NAME={Context.prowlarr-name}",
-          "DN_PROWLARR_0_URL=http://{Context.prowlarr-name}:9696",
-          "DN_PROWLARR_0_API_KEY={Context.prowlarrApiKey}",
-          "DN_PROWLARR_0_USERNAME={Context.prowlarrUser}",
-          "DN_PROWLARR_0_PASSWORD={Context.prowlarrPassword}"
-        {/if}
-        {if Context.radarr}
-        , "DN_RADARR_0_NAME={Context.radarr-name}",
-          "DN_RADARR_0_URL=http://{Context.radarr-name}:7878",
-          "DN_RADARR_0_API_KEY={Context.radarrApiKey}",
-          "DN_RADARR_0_USERNAME={Context.radarrUser}",
-          "DN_RADARR_0_PASSWORD={Context.radarrPassword}"
-        {/if}
-        {if Context.readarr}
-        , "DN_READARR_0_NAME={Context.readarr-name}",
-          "DN_READARR_0_URL=http://{Context.readarr-name}:8787",
-          "DN_READARR_0_API_KEY={Context.readarrApiKey}",
-          "DN_READARR_0_USERNAME={Context.readarrUser}",
-          "DN_READARR_0_PASSWORD={Context.readarrPassword}"
-        {/if}
-        {if Context.sonarr}
-        , "DN_SONARR_0_NAME={Context.sonarr-name}",
-          "DN_SONARR_0_URL=http://{Context.sonarr-name}:8989",
-          "DN_SONARR_0_API_KEY={Context.sonarrApiKey}",
-          "DN_SONARR_0_USERNAME={Context.sonarrUser}",
-          "DN_SONARR_0_PASSWORD={Context.sonarrPassword}"
-        {/if}
-        {if Context.qbittorrent}
-        , "DN_QBIT_0_NAME={Context.qbittorrent-name}",
-          "DN_QBIT_0_URL=http://{Context.qbittorrent-name}:8080",
-          "DN_QBIT_0_USER={Context.qbittorrentUser}",
-          "DN_QBIT_0_PASS={Context.qbittorrentPassword}"
-        {/if}
-        {if Context.rtorrent}
-        , "DN_RTORRENT_0_NAME={Context.rtorrent-name}",
-          "DN_RTORRENT_0_URL=http://{Context.rtorrent-name}:5000",
-          "DN_RTORRENT_0_USER={Context.rtorrentUser}",
-          "DN_RTORRENT_0_PASS={Context.rtorrentPassword}"
-        {/if}
-        {if Context.sabnzbd}
-        , "DN_SABNZBD_0_NAME={Context.sabnzbd-name}",
-          "DN_SABNZBD_0_URL=http://{Context.sabnzbd-name}:8080",
-          "DN_SABNZBD_0_API_KEY={Context.sabnzbdApiKey}"
-        {/if}
-        {if Context.deluge}
-        , "DN_DELUGE_0_NAME={Context.deluge-name}",
-          "DN_DELUGE_0_URL=http://{Context.deluge-name}:8112",
-          "DN_DELUGE_0_PASSWORD={Context.delugePassword}"
-        {/if}
-        {if Context.nzbget}
-        , "DN_NZBGET_0_NAME={Context.nzbget-name}",
-          "DN_NZBGET_0_URL=http://{Context.nzbget-name}:6789",
-          "DN_NZBGET_0_USER={Context.nzbgetUser}",
-          "DN_NZBGET_0_PASS={Context.nzbgetPassword}"
-        {/if}
-        {if Context.plex}
-        , "DN_PLEX_URL=http://{Context.plex-name}:32400",
-          "DN_PLEX_TOKEN={Context.plexToken}"
-        {/if}
-        {if Context.tautulli}
-        , "DN_TAUTULLI_NAME={Context.tautulli-name}",
-          "DN_TAUTULLI_URL=http://{Context.tautulli-name}:8181",
-          "DN_TAUTULLI_API_KEY={Context.tautulliApiKey}"
-        {/if}
+        "DN_HTTP_LOG=/config/http.log"{if Context.lidarr
+        },
+        "DN_LIDARR_0_NAME={Context.lidarr-name}",
+        "DN_LIDARR_0_URL=http://{Context.lidarr-name}:8686",
+        "DN_LIDARR_0_API_KEY={Context.lidarrApiKey}",
+        "DN_LIDARR_0_USERNAME={Context.lidarrUser}",
+        "DN_LIDARR_0_PASSWORD={Context.lidarrPassword}"{/if
+        }
+        {if Context.prowlarr
+        },
+        "DN_PROWLARR_0_NAME={Context.prowlarr-name}",
+        "DN_PROWLARR_0_URL=http://{Context.prowlarr-name}:9696",
+        "DN_PROWLARR_0_API_KEY={Context.prowlarrApiKey}",
+        "DN_PROWLARR_0_USERNAME={Context.prowlarrUser}",
+        "DN_PROWLARR_0_PASSWORD={Context.prowlarrPassword}"{/if
+        }
+        {if Context.radarr
+        },
+        "DN_RADARR_0_NAME={Context.radarr-name}",
+        "DN_RADARR_0_URL=http://{Context.radarr-name}:7878",
+        "DN_RADARR_0_API_KEY={Context.radarrApiKey}",
+        "DN_RADARR_0_USERNAME={Context.radarrUser}",
+        "DN_RADARR_0_PASSWORD={Context.radarrPassword}"{/if
+        }
+        {if Context.readarr
+        },
+        "DN_READARR_0_NAME={Context.readarr-name}",
+        "DN_READARR_0_URL=http://{Context.readarr-name}:8787",
+        "DN_READARR_0_API_KEY={Context.readarrApiKey}",
+        "DN_READARR_0_USERNAME={Context.readarrUser}",
+        "DN_READARR_0_PASSWORD={Context.readarrPassword}"{/if
+        }
+        {if Context.sonarr
+        },
+        "DN_SONARR_0_NAME={Context.sonarr-name}",
+        "DN_SONARR_0_URL=http://{Context.sonarr-name}:8989",
+        "DN_SONARR_0_API_KEY={Context.sonarrApiKey}",
+        "DN_SONARR_0_USERNAME={Context.sonarrUser}",
+        "DN_SONARR_0_PASSWORD={Context.sonarrPassword}"{/if
+        }
+        {if Context.qbittorrent
+        },
+        "DN_QBIT_0_NAME={Context.qbittorrent-name}",
+        "DN_QBIT_0_URL=http://{Context.qbittorrent-name}:8080",
+        "DN_QBIT_0_USER={Context.qbittorrentUser}",
+        "DN_QBIT_0_PASS={Context.qbittorrentPassword}"{/if
+        }
+        {if Context.rtorrent
+        },
+        "DN_RTORRENT_0_NAME={Context.rtorrent-name}",
+        "DN_RTORRENT_0_URL=http://{Context.rtorrent-name}:5000",
+        "DN_RTORRENT_0_USER={Context.rtorrentUser}",
+        "DN_RTORRENT_0_PASS={Context.rtorrentPassword}"{/if
+        }
+        {if Context.sabnzbd
+        },
+        "DN_SABNZBD_0_NAME={Context.sabnzbd-name}",
+        "DN_SABNZBD_0_URL=http://{Context.sabnzbd-name}:8080",
+        "DN_SABNZBD_0_API_KEY={Context.sabnzbdApiKey}"{/if
+        }
+        {if Context.deluge
+        },
+        "DN_DELUGE_0_NAME={Context.deluge-name}",
+        "DN_DELUGE_0_URL=http://{Context.deluge-name}:8112",
+        "DN_DELUGE_0_PASSWORD={Context.delugePassword}"{/if
+        }
+        {if Context.nzbget
+        },
+        "DN_NZBGET_0_NAME={Context.nzbget-name}",
+        "DN_NZBGET_0_URL=http://{Context.nzbget-name}:6789",
+        "DN_NZBGET_0_USER={Context.nzbgetUser}",
+        "DN_NZBGET_0_PASS={Context.nzbgetPassword}"{/if
+        }
+        {if Context.plex
+        },
+        "DN_PLEX_URL=http://{Context.plex-name}:32400",
+        "DN_PLEX_TOKEN={Context.plexToken}"{/if
+        }
+        {if Context.tautulli
+        },
+        "DN_TAUTULLI_NAME={Context.tautulli-name}",
+        "DN_TAUTULLI_URL=http://{Context.tautulli-name}:8181",
+        "DN_TAUTULLI_API_KEY={Context.tautulliApiKey}"{/if
+        }
       ],
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
         "cosmos-persistent-env": "DN_LIDARR_0_NAME, DN_LIDARR_0_URL, DN_LIDARR_0_API_KEY, DN_LIDARR_0_USERNAME, DN_LIDARR_0_PASSWORD",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Notifiarr/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Notifiarr/icon.png"
       },
       "volumes": [
         {
@@ -344,7 +355,7 @@
           "target": "/etc/machine-id",
           "type": "bind"
         }
-    ],
+      ],
       "routes": [
         {
           "name": "{ServiceName}",
@@ -359,45 +370,58 @@
             "Enabled": true
           },
           "AuthEnabled": true
-          {if Context.adminOnly}
-           , "AuthAdmin": true
-          {/if}
+          {if Context.adminOnly
+          },
+          "AuthAdmin": true
+          {/if
+          }
         }
-      ]
-      , "links": [
-        {if Context.lidarr}
-          "{Context.lidarr-name}"
-        {/if}
-        {if Context.prowlarr}
-        , "{Context.prowlarr-name}"
-        {/if}
-        {if Context.radarr}
-        , "{Context.radarr-name}"
-        {/if}
-        {if Context.readarr}
-        , "{Context.readarr-name}"
-        {/if}
-        {if Context.sonarr}
-        , "{Context.sonarr-name}"
-        {/if}
-        {if Context.qbittorrent}
-        , "{Context.qbittorrent-name}"
-        {/if}
-        {if Context.rtorrent}
-        , "{Context.rtorrent-name}"
-        {/if}
-        {if Context.sabnzbd}
-        , "{Context.sabnzbd-name}"
-        {/if}
-        {if Context.deluge}
-        , "{Context.deluge-name}"
-        {/if}
-        {if Context.nzbget}
-        , "{Context.nzbget-name}"
-        {/if}
-        {if Context.plex}
-        , "{Context.plex-name}"
-        {/if}
+      ],
+      "links": [
+        {if Context.lidarr
+        }
+          "{Context.lidarr-name}"{/if
+        }
+        {if Context.prowlarr
+        },
+        "{Context.prowlarr-name}"{/if
+        }
+        {if Context.radarr
+        },
+        "{Context.radarr-name}"{/if
+        }
+        {if Context.readarr
+        },
+        "{Context.readarr-name}"{/if
+        }
+        {if Context.sonarr
+        },
+        "{Context.sonarr-name}"{/if
+        }
+        {if Context.qbittorrent
+        },
+        "{Context.qbittorrent-name}"{/if
+        }
+        {if Context.rtorrent
+        },
+        "{Context.rtorrent-name}"{/if
+        }
+        {if Context.sabnzbd
+        },
+        "{Context.sabnzbd-name}"{/if
+        }
+        {if Context.deluge
+        },
+        "{Context.deluge-name}"{/if
+        }
+        {if Context.nzbget
+        },
+        "{Context.nzbget-name}"{/if
+        }
+        {if Context.plex
+        },
+        "{Context.plex-name}"{/if
+        }
       ]
     }
   }

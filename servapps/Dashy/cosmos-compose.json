@@ -20,18 +20,20 @@
         "NODE_ENV=production"
       ],
       "labels": {
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Dashy/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Dashy/icon.png",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true"
       },
       "volumes": [
-        {if Context.configPath}
+        {if Context.configPath
+        }
         {
           "source": "{Context.configPath}",
           "target": "/app/public/",
           "type": "bind"
         }
-        {/if}
+        {/if
+        }
       ],
       "routes": [
         {

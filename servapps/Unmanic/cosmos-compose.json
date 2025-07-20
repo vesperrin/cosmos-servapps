@@ -13,7 +13,7 @@
         "initialValue": "{DefaultDataPath}/unmanic",
         "type": "text"
       },
-      { 
+      {
         "name": "useHwTranscoding",
         "label": "Do you want to use HW Transcoding? (assumes intel chip for VAAPI encoder)",
         "initialValue": false,
@@ -37,33 +37,39 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Unmanic/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Unmanic/icon.png"
       },
-      {if Context.useHwTranscoding}
+      {if Context.useHwTranscoding
+      }
       "devices": [
         "/dev/dri:/dev/dri"
       ],
-      {/if}
+      {/if
+      }
       "volumes": [
         {
           "source": "{ServiceName}-config",
           "target": "/config",
           "type": "volume"
         }
-        {if Context.libraryPath}
-        , {
+        {if Context.libraryPath
+        },
+        {
           "source": "{Context.libraryPath}",
           "target": "/library",
           "type": "bind"
         }
-        {/if}
-        {if Context.tmpUnmanicPath}
-        , {
+        {/if
+        }
+        {if Context.tmpUnmanicPath
+        },
+        {
           "source": "{Context.tmpUnmanicPath}",
           "target": "/tmp/unmanic",
           "type": "bind"
         }
-        {/if}
+        {/if
+        }
       ],
       "routes": [
         {

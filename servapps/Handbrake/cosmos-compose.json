@@ -1,4 +1,4 @@
-{ 
+{
   "cosmos-installer": {
     "form": [
       {
@@ -49,40 +49,48 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Handbrake/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Handbrake/icon.png"
       },
-      {if Context.enableDevices}
+      {if Context.enableDevices
+      }
       "devices": [
         "/dev/dri:/dev/dri"
       ],
-      {/if}
+      {/if
+      }
       "volumes": [
         {
           "source": "{ServiceName}-config",
           "target": "/config",
           "type": "volume"
         }
-        {if Context.storagePath}
-        , {
+        {if Context.storagePath
+        },
+        {
           "source": "{Context.storagePath}",
           "target": "/storage",
           "type": "bind"
         }
-        {/if}
-        {if Context.outputPath}
-        , {
+        {/if
+        }
+        {if Context.outputPath
+        },
+        {
           "source": "{Context.outputPath}",
           "target": "/output",
           "type": "bind"
         }
-        {/if}
-        {if Context.watchPath}
-        , {
+        {/if
+        }
+        {if Context.watchPath
+        },
+        {
           "source": "{Context.watchPath}",
           "target": "/watch",
           "type": "bind"
         }
-        {/if}
+        {/if
+        }
       ],
       "routes": [
         {
@@ -98,9 +106,11 @@
             "Enabled": true
           },
           "AuthEnabled": true
-          {if Context.adminOnly}
-           , "AuthAdmin": true
-          {/if}
+          {if Context.adminOnly
+          },
+          "AuthAdmin": true
+          {/if
+          }
         }
       ]
     }

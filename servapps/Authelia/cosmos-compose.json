@@ -33,7 +33,7 @@
         "cosmos-persistent-env": "AUTHELIA_STORAGE_ENCRYPTION_KEY, AUTHELIA_STORAGE_POSTGRES_ADDRESS, AUTHELIA_STORAGE_POSTGRES_PASSWORD",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/Authelia/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/Authelia/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },

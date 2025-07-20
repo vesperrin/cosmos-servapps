@@ -1,4 +1,4 @@
-{ 
+{
   "cosmos-installer": {
     "form": [
       {
@@ -43,13 +43,34 @@
         "initialValue": "VANILLA",
         "type": "select",
         "options": [
-          ["VANILLA", "Vanilla"],
-          ["CURSEFORGE ", "CurseForge Modded"],
-          ["SPIGOT", "Spigot"],
-          ["FORGE", "Forge"],
-          ["PAPER", "Paper"],
-          ["PURPUR", "Purpur"],
-          ["FABRIC", "Fabric"]
+          [
+            "VANILLA",
+            "Vanilla"
+          ],
+          [
+            "CURSEFORGE ",
+            "CurseForge Modded"
+          ],
+          [
+            "SPIGOT",
+            "Spigot"
+          ],
+          [
+            "FORGE",
+            "Forge"
+          ],
+          [
+            "PAPER",
+            "Paper"
+          ],
+          [
+            "PURPUR",
+            "Purpur"
+          ],
+          [
+            "FABRIC",
+            "Fabric"
+          ]
         ]
       },
       {
@@ -79,7 +100,7 @@
       "container_name": "{ServiceName}",
       "restart": "unless-stopped",
       "environment": [
-        "TZ=auto",  
+        "TZ=auto",
         "EULA=TRUE",
         "MEMORY={Context.memory}",
         "TYPE={Context.type}",
@@ -97,7 +118,7 @@
       ],
       "labels": {
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Minecraft-Server/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Minecraft-Server/icon.png"
       },
       "volumes": [
         {
@@ -105,13 +126,15 @@
           "target": "/data",
           "type": "bind"
         }
-        {if Context.dataPath}
-          ,  {
-            "source": "{Context.modPath}",
-            "target": "{Context.modPath}",
-            "type": "bind"
-          }
-        {/if}
+        {if Context.dataPath
+        },
+        {
+          "source": "{Context.modPath}",
+          "target": "{Context.modPath}",
+          "type": "bind"
+        }
+        {/if
+        }
       ]
     }
   }

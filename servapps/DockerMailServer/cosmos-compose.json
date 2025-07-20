@@ -1,4 +1,4 @@
-{ 
+{
   "cosmos-installer": {
     "post-install": [
       {
@@ -36,7 +36,7 @@
       ],
       "labels": {
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/DockerMailServer/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/DockerMailServer/icon.png"
       },
       "ports": [
         "25:25",
@@ -86,9 +86,11 @@
             "Enabled": true
           },
           "AuthEnabled": true
-          {if Context.adminOnly}
-           , "AuthAdmin": true
-          {/if}
+          {if Context.adminOnly
+          },
+          "AuthAdmin": true
+          {/if
+          }
         }
       ]
     }

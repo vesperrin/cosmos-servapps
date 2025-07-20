@@ -1,4 +1,4 @@
-{ 
+{
   "cosmos-installer": {
     "form": [
       {
@@ -31,16 +31,18 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Pingvin-share/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Pingvin-share/icon.png"
       },
       "volumes": [
-        {if Context.downloadPath}
+        {if Context.downloadPath
+        }
           {
-            "source": "{Context.downloadPath}",
-            "target": "/opt/app/backend/data",
-            "type": "bind"
-          }
-        {/if}
+          "source": "{Context.downloadPath}",
+          "target": "/opt/app/backend/data",
+          "type": "bind"
+        }
+        {/if
+        }
       ],
       "routes": [
         {
@@ -56,9 +58,11 @@
             "Enabled": true
           },
           "AuthEnabled": true
-          {if Context.adminOnly}
-           , "AuthAdmin": true
-          {/if}
+          {if Context.adminOnly
+          },
+          "AuthAdmin": true
+          {/if
+          }
         }
       ]
     }

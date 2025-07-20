@@ -41,7 +41,7 @@
         "cosmos-persistent-env": "SONARQUBE_DATABASE_PORT_NUMBER, SONARQUBE_DATABASE_USER, SONARQUBE_DATABASE_NAME, SONARQUBE_DATABASE_PASSWORD ",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/Sonarqube/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/Sonarqube/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -54,7 +54,7 @@
           "target": "/bitnami/sonarqube",
           "type": "volume"
         }
-    ],
+      ],
       "routes": [
         {
           "name": "{ServiceName}",
@@ -71,7 +71,6 @@
         }
       ]
     },
-    
     "{ServiceName}-postgres": {
       "image": "postgres:15-alpine",
       "container_name": "{ServiceName}-postgres",
@@ -104,9 +103,7 @@
       ]
     }
   },
-
   "networks": {
-    "{ServiceName}-postgres": {
-    }
+    "{ServiceName}-postgres": {}
   }
 }

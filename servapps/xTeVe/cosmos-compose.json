@@ -35,7 +35,7 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/xTeVe/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/xTeVe/icon.png"
       },
       "volumes": [
         {
@@ -43,13 +43,15 @@
           "target": "/home/xteve/conf",
           "type": "volume"
         }
-        {if Context.dataPath}
-        ,{
+        {if Context.dataPath
+        },
+        {
           "source": "{Context.dataPath}",
           "target": "/data",
           "type": "bind"
         }
-        {/if}
+        {/if
+        }
       ],
       "routes": [
         {

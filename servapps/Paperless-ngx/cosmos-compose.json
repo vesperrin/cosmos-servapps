@@ -10,7 +10,7 @@
         "label": "Would you like to change the admin username? (Default: admin)",
         "initialValue": "admin",
         "type": "text"
-      }, 
+      },
       {
         "name": "password",
         "label": "Would you like to change the admin password? (Default: password)",
@@ -53,7 +53,7 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Paperless-ngx/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Paperless-ngx/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -61,7 +61,6 @@
         "{ServiceName}-network": {}
       }
     },
-
     "{ServiceName}-db": {
       "image": "docker.io/library/postgres:15",
       "container_name": "{ServiceName}-db",
@@ -78,11 +77,11 @@
         "POSTGRES_USER=paperless",
         "POSTGRES_PASSWORD={Passwords.0}"
       ],
-      "labels": {        
+      "labels": {
         "cosmos-persistent-env": "POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Paperless-ngx/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Paperless-ngx/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -90,7 +89,6 @@
         "{ServiceName}-network": {}
       }
     },
-    
     "{ServiceName}": {
       "image": "ghcr.io/paperless-ngx/paperless-ngx:latest",
       "restart": "unless-stopped",
@@ -139,7 +137,7 @@
         "cosmos-persistent-env": "PAPERLESS_ADMIN_PASSWORD, PAPERLESS_ADMIN_USER, PAPERLESS_DBPASS",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Paperless-ngx/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Paperless-ngx/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -161,13 +159,14 @@
             "Enabled": true
           },
           "AuthEnabled": true
-          {if Context.adminOnly}
-           , "AuthAdmin": true
-          {/if}
+          {if Context.adminOnly
+          },
+          "AuthAdmin": true
+          {/if
+          }
         }
       ]
     },
-
     "{ServiceName}-gotenberg": {
       "image": "docker.io/gotenberg/gotenberg:7.8",
       "container_name": "{ServiceName}-gotenberg",
@@ -175,7 +174,7 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Paperless-ngx/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Paperless-ngx/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -183,7 +182,6 @@
         "{ServiceName}-network": {}
       }
     },
-
     "{ServiceName}-tika": {
       "image": "ghcr.io/paperless-ngx/tika:latest",
       "container_name": "{ServiceName}-tika",
@@ -191,7 +189,7 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Paperless-ngx/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Paperless-ngx/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -200,9 +198,7 @@
       }
     }
   },
-  
   "networks": {
-    "{ServiceName}-network": {
-    }
+    "{ServiceName}-network": {}
   }
 }

@@ -28,7 +28,7 @@
         "cosmos-persistent-env": "POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DATABASE",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Joplin/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Joplin/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -51,7 +51,6 @@
         }
       ]
     },
-    
     "{ServiceName}-postgres": {
       "image": "postgres:15-alpine",
       "container_name": "{ServiceName}-postgres",
@@ -84,9 +83,7 @@
       }
     }
   },
-
   "networks": {
-    "{ServiceName}-postgres": {
-    }
+    "{ServiceName}-postgres": {}
   }
 }

@@ -1,10 +1,10 @@
 {
     "cosmos-installer": {
         "post-install": [
-          {
-            "type": "warning",
-            "label": "You need to create a proper config file for the backend in the volume attached (It has to be in /var/lib/docker/volumes/{ServiceName}-backend/_data/config.properties). Don't forget to set the proper DB URL and PWD in it."
-          }
+            {
+                "type": "warning",
+                "label": "You need to create a proper config file for the backend in the volume attached (It has to be in /var/lib/docker/volumes/{ServiceName}-backend/_data/config.properties). Don't forget to set the proper DB URL and PWD in it."
+            }
         ]
     },
     "services": {
@@ -15,13 +15,13 @@
             "labels": {
                 "cosmos-force-network-secured": "true",
                 "cosmos-auto-update": "true",
-                "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Piped/icon.png",
+                "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Piped/icon.png",
                 "cosmos-persistent-env": "POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD",
                 "cosmos-stack": "{ServiceName}",
                 "cosmos-stack-main": "{ServiceName}"
             },
             "networks": {
-               "{ServiceName}-net": {}
+                "{ServiceName}-net": {}
             },
             "routes": [
                 {
@@ -64,7 +64,7 @@
                 "cosmos-stack": "{ServiceName}",
                 "cosmos-stack-main": "{ServiceName}"
             },
-             "environment": [
+            "environment": [
                 "UDS=1",
                 "POSTGRES_DB=piped",
                 "POSTGRES_USER=piped",
@@ -72,7 +72,7 @@
                 "DATABASE_HOST={ServiceName}-postgres"
             ],
             "networks": {
-               "{ServiceName}-net": {}
+                "{ServiceName}-net": {}
             },
             "routes": [
                 {
@@ -120,7 +120,7 @@
                 "cosmos-stack-main": "{ServiceName}"
             },
             "networks": {
-               "{ServiceName}-net": {}
+                "{ServiceName}-net": {}
             },
             "routes": [
                 {
@@ -152,7 +152,7 @@
                 "cosmos-stack-main": "{ServiceName}"
             },
             "networks": {
-               "{ServiceName}-net": {}
+                "{ServiceName}-net": {}
             },
             "volumes": [
                 {
@@ -171,6 +171,6 @@
         }
     },
     "networks": {
-       "{ServiceName}-net": {}
+        "{ServiceName}-net": {}
     }
 }

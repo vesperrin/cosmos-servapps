@@ -34,7 +34,7 @@
         "DB_NAME=manyfold",
         "DB_PASS={Passwords.0}",
         "DB_PORT=5432",
-	"DATABASE_URL=postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}?pool=5"
+        "DATABASE_URL=postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}?pool=5"
       ],
       "security_opt": [
         "no-new-privileges:true"
@@ -52,7 +52,7 @@
         "cosmos-persistent-env": "SECRET_KEY_BASE, DB_PASS, DB_USER, DB_NAME",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Manyfold/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Manyfold/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -60,13 +60,15 @@
         "{ServiceName}-data": {}
       },
       "volumes": [
-        {if Context.modelPaths}
+        {if Context.modelPaths
+        }
         {
           "source": "{Context.modelPaths}",
           "target": "/3D_models",
           "type": "bind"
         }
-        {/if}
+        {/if
+        }
       ],
       "routes": [
         {
@@ -82,13 +84,14 @@
             "Enabled": true
           },
           "AuthEnabled": true
-          {if Context.adminOnly}
-           , "AuthAdmin": true
-          {/if}
+          {if Context.adminOnly
+          },
+          "AuthAdmin": true
+          {/if
+          }
         }
       ]
     },
-
     "{ServiceName}-redis": {
       "restart": "always",
       "image": "redis:7-alpine",
@@ -100,7 +103,7 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Manyfold/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Manyfold/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -112,8 +115,6 @@
         ]
       }
     },
-
-
     "{ServiceName}-postgres": {
       "image": "postgres:15-alpine",
       "container_name": "{ServiceName}-postgres",
@@ -127,7 +128,7 @@
         "cosmos-persistent-env": "POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Manyfold/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Manyfold/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -145,9 +146,7 @@
       ]
     }
   },
-
   "networks": {
-    "{ServiceName}-data": {
-    }
+    "{ServiceName}-data": {}
   }
 }

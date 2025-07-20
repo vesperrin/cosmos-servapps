@@ -36,7 +36,7 @@
         "cosmos-persistent-env": "LLDAP_JWT_SECRET, LLDAP_KEY_SEED, LLDAP_LDAP_USER_PASS, LLDAP_LDAP_BASE_DN",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/Lldap/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/Lldap/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },

@@ -39,7 +39,7 @@
         "cosmos-persistent-env": "DISCOURSE_DATABASE_HOST, DISCOURSE_DATABASE_NAME, DISCOURSE_DATABASE_PASSWORD, DISCOURSE_REDIS_PASSWORD",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/Odoo/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/Odoo/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -52,7 +52,7 @@
           "target": "/bitnami/discourse",
           "type": "volume"
         }
-    ],
+      ],
       "routes": [
         {
           "name": "{ServiceName}",
@@ -92,7 +92,7 @@
         "cosmos-persistent-env": "DISCOURSE_DATABASE_HOST, DISCOURSE_DATABASE_NAME, DISCOURSE_DATABASE_PASSWORD, DISCOURSE_REDIS_PASSWORD",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/Odoo/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/Odoo/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -105,7 +105,7 @@
           "target": "/bitnami/discourse",
           "type": "volume"
         }
-    ]
+      ]
     },
     "{ServiceName}-postgres": {
       "image": "postgres:15-alpine",
@@ -164,7 +164,6 @@
     }
   },
   "networks": {
-    "{ServiceName}-postgres": {
-    }
+    "{ServiceName}-postgres": {}
   }
 }

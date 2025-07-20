@@ -37,7 +37,7 @@
         "cosmos-persistent-env": "KEYCLOAK_DATABASE_NAME, KEYCLOAK_DATABASE_USER, KEYCLOAK_DATABASE_PASSWORD",
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/Keycloak/icon.png",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/Keycloak/icon.png",
         "cosmos-stack": "{ServiceName}",
         "cosmos-stack-main": "{ServiceName}"
       },
@@ -60,7 +60,6 @@
         }
       ]
     },
-    
     "{ServiceName}-postgres": {
       "image": "postgres:15-alpine",
       "container_name": "{ServiceName}-postgres",
@@ -93,9 +92,7 @@
       ]
     }
   },
-
   "networks": {
-    "{ServiceName}-postgres": {
-    }
+    "{ServiceName}-postgres": {}
   }
 }

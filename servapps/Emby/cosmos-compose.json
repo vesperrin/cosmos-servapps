@@ -13,7 +13,7 @@
         "initialValue": "{DefaultDataPath}/series",
         "type": "text"
       },
-      { 
+      {
         "name": "useHwTranscoding",
         "label": "Do you want to mount /dev/dri? (only if you know what you are doing)",
         "initialValue": false,
@@ -37,33 +37,39 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Emby/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Emby/icon.png"
       },
-      {if Context.useHwTranscoding}
+      {if Context.useHwTranscoding
+      }
       "devices": [
         "/dev/dri:/dev/dri"
       ],
-      {/if}
+      {/if
+      }
       "volumes": [
         {
           "source": "{ServiceName}-config",
           "target": "/config",
           "type": "volume"
         }
-        {if Context.moviePath}
-        , {
+        {if Context.moviePath
+        },
+        {
           "source": "{Context.moviePath}",
           "target": "/data/movies",
           "type": "bind"
         }
-        {/if}
-        {if Context.seriePath}
-        , {
+        {/if
+        }
+        {if Context.seriePath
+        },
+        {
           "source": "{Context.seriePath}",
           "target": "/data/tvshows",
           "type": "bind"
         }
-        {/if}
+        {/if
+        }
       ],
       "routes": [
         {

@@ -18,16 +18,18 @@
       "labels": {
         "cosmos-force-network-secured": "true",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/MeTube/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/MeTube/icon.png"
       },
       "volumes": [
-        {if Context.downloadsPath}
+        {if Context.downloadsPath
+        }
         {
           "source": "{Context.downloadsPath}",
           "target": "/downloads",
           "type": "bind"
         }
-        {/if}
+        {/if
+        }
       ],
       "routes": [
         {

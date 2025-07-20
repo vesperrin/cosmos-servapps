@@ -13,8 +13,14 @@
         "initialValue": "false",
         "type": "select",
         "options": [
-          ["true", "true"],
-          ["false", "false"]
+          [
+            "true",
+            "true"
+          ],
+          [
+            "false",
+            "false"
+          ]
         ]
       },
       {
@@ -67,7 +73,7 @@
       "labels": {
         "cosmos-force-network-secured": "false",
         "cosmos-auto-update": "true",
-        "cosmos-icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/ESPHome/icon.png"
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/ESPHome/icon.png"
       },
       "routes": [
         {
