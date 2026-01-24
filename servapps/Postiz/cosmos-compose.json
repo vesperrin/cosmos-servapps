@@ -99,10 +99,10 @@
       "ports": [
         "4007:4007"
       ],
-      "networks": [
-        "{ServiceName}",
-        "{ServiceName}-temporal"
-      ],
+      "networks": {
+        "{ServiceName}": {},
+        "{ServiceName}-temporal": {}
+      },
       "depends_on": {
         "{ServiceName}-postgres": {
           "condition": "service_healthy"
@@ -156,9 +156,9 @@
           "target": "/var/lib/postgresql/data"
         }
       ],
-      "networks": [
-        "{ServiceName}"
-      ],
+      "networks": {
+        "{ServiceName}": {}
+      },
       "healthcheck": {
         "test": ["CMD", "pg_isready -U postiz-user -d postiz-db-local"],
         "interval": "10s",
@@ -197,9 +197,9 @@
           "target": "/data"
         }
       ],
-      "networks": [
-        "{ServiceName}"
-      ]
+      "networks": {
+        "{ServiceName}": {}
+      }
     },
     "{ServiceName}-spotlight": {
       "pull_policy": "always",
@@ -222,9 +222,9 @@
         "cosmos-auto-update": "true",
         "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
       },
-      "networks": [
-        "{ServiceName}"
-      ]
+      "networks": {
+        "{ServiceName}": {}
+      }
     },
     "{ServiceName}-temporal-elasticsearch": {
       "container_name": "{ServiceName}-temporal-elasticsearch",
@@ -250,9 +250,9 @@
         "cosmos-auto-update": "true",
         "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
       },
-      "networks": [
-        "{ServiceName}-temporal"
-      ],
+      "networks": {
+        "{ServiceName}-temporal": {}
+      },
       "expose": [
         9200
       ],
@@ -283,9 +283,9 @@
         "cosmos-auto-update": "true",
         "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
       },
-      "networks": [
-        "{ServiceName}-temporal"
-      ],
+      "networks": {
+        "{ServiceName}-temporal": {}
+      },
       "expose": [
         5432
       ],
@@ -332,9 +332,9 @@
         "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png",
         "kompose.volume.type": "configMap"
       },
-      "networks": [
-        "{ServiceName}-temporal"
-      ],
+      "networks": {
+        "{ServiceName}-temporal": {}
+      },
       "volumes": [
         {
           "type": "volume",
@@ -362,9 +362,9 @@
         "cosmos-auto-update": "true",
         "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
       },
-      "networks": [
-        "{ServiceName}-temporal"
-      ],
+      "networks": {
+        "{ServiceName}-temporal": {}
+      },
       "stdin_open": true,
       "depends_on": [
         "{ServiceName}-temporal"
@@ -390,9 +390,9 @@
         "cosmos-auto-update": "true",
         "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
       },
-      "networks": [
-        "{ServiceName}-temporal"
-      ],
+      "networks": {
+        "{ServiceName}-temporal": {}
+      },
       "ports": [
         "8080:8080"
       ]
