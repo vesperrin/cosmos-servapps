@@ -1,12 +1,6 @@
 {
   "cosmos-installer": {
     "form": [
-      {
-        "name": "adminOnly",
-        "label": "Do you want to make this service admin only?",
-        "initialValue": true,
-        "type": "checkbox"
-      }
     ],
     "post-install": [
       {
@@ -131,9 +125,6 @@
             "Enabled": true
           },
           "AuthEnabled": true
-          {if Context.adminOnly}
-          , "AuthAdmin": true
-          {/if}
         }
       ]
     },
