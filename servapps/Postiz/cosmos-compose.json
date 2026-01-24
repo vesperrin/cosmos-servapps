@@ -1,0 +1,417 @@
+{
+  "cosmos-installer": {
+    "form": [
+      {
+        "name": "adminOnly",
+        "label": "Do you want to make this service admin only?",
+        "initialValue": true,
+        "type": "checkbox"
+      }
+    ],
+    "post-install": [
+      {
+        "type": "info",
+        "label": "The installation will take a few minutes before the service is available."
+      }
+    ]
+  },
+  "minVersion": "0.7.6",
+  "services": {
+    "{ServiceName}": {
+      "image": "ghcr.io/gitroomhq/postiz-app:latest",
+      "container_name": "{ServiceName}",
+      "restart": "always",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "MAIN_URL=http://{Hostnames.{StaticServiceName}.{StaticServiceName}.host}:4007",
+        "FRONTEND_URL=http://{Hostnames.{StaticServiceName}.{StaticServiceName}.host}:4007",
+        "NEXT_PUBLIC_BACKEND_URL=http://{Hostnames.{StaticServiceName}.{StaticServiceName}.host}:4007/api",
+        "JWT_SECRET={Passwords.0}",
+        "DATABASE_URL=postgresql://postiz-user:{Passwords.0}@postiz-postgres:5432/postiz-db-local",
+        "REDIS_URL=redis://{ServiceName}-redis:6379",
+        "BACKEND_INTERNAL_URL=http://localhost:3000",
+        "TEMPORAL_ADDRESS={ServiceName}-temporal:7233",
+        "IS_GENERAL=true",
+        "DISABLE_REGISTRATION=false",
+        "RUN_CRON=true",
+        "STORAGE_PROVIDER=local",
+        "UPLOAD_DIRECTORY=/uploads",
+        "NEXT_PUBLIC_UPLOAD_DIRECTORY=/uploads",
+        "X_API_KEY=",
+        "X_API_SECRET=",
+        "LINKEDIN_CLIENT_ID=",
+        "LINKEDIN_CLIENT_SECRET=",
+        "REDDIT_CLIENT_ID=",
+        "REDDIT_CLIENT_SECRET=",
+        "GITHUB_CLIENT_ID=",
+        "GITHUB_CLIENT_SECRET=",
+        "BEEHIIVE_API_KEY=",
+        "BEEHIIVE_PUBLICATION_ID=",
+        "THREADS_APP_ID=",
+        "THREADS_APP_SECRET=",
+        "FACEBOOK_APP_ID=",
+        "FACEBOOK_APP_SECRET=",
+        "YOUTUBE_CLIENT_ID=",
+        "YOUTUBE_CLIENT_SECRET=",
+        "TIKTOK_CLIENT_ID=",
+        "TIKTOK_CLIENT_SECRET=",
+        "PINTEREST_CLIENT_ID=",
+        "PINTEREST_CLIENT_SECRET=",
+        "DRIBBBLE_CLIENT_ID=",
+        "DRIBBBLE_CLIENT_SECRET=",
+        "DISCORD_CLIENT_ID=",
+        "DISCORD_CLIENT_SECRET=",
+        "DISCORD_BOT_TOKEN_ID=",
+        "SLACK_ID=",
+        "SLACK_SECRET=",
+        "SLACK_SIGNING_SECRET=",
+        "MASTODON_URL=https://mastodon.social",
+        "MASTODON_CLIENT_ID=",
+        "MASTODON_CLIENT_SECRET=",
+        "OPENAI_API_KEY=",
+        "NEXT_PUBLIC_DISCORD_SUPPORT=",
+        "NEXT_PUBLIC_POLOTNO=",
+        "API_LIMIT=30",
+        "FEE_AMOUNT=0.05",
+        "STRIPE_PUBLISHABLE_KEY=",
+        "STRIPE_SECRET_KEY=",
+        "STRIPE_SIGNING_KEY=",
+        "STRIPE_SIGNING_KEY_CONNECT=",
+        "NX_ADD_PLUGINS=false"
+      ],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
+      },
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-config",
+          "target": "/config"
+        },
+        {
+          "type": "volume",
+          "source": "{ServiceName}-uploads",
+          "target": "/uploads"
+        }
+      ],
+      "ports": [
+        "4007:4007"
+      ],
+      "networks": [
+        "{ServiceName}",
+        "{ServiceName}-temporal"
+      ],
+      "depends_on": {
+        "{ServiceName}-postgres": {
+          "condition": "service_healthy"
+        },
+        "{ServiceName}-redis": {
+          "condition": "service_healthy"
+        }
+      },
+      "routes": [
+        {
+          "name": "{ServiceName}",
+          "description": "Expose {ServiceName} to the web",
+          "useHost": true,
+          "target": "http://{ServiceName}:4007",
+          "mode": "SERVAPP",
+          "Timeout": 14400000,
+          "ThrottlePerMinute": 12000,
+          "BlockCommonBots": true,
+          "SmartShield": {
+            "Enabled": true
+          },
+          "AuthEnabled": true
+    {if Context.adminOnly
+          },
+          "AuthAdmin": true
+    {/if
+          }
+        }
+      ]
+    },
+    "{ServiceName}-postgres": {
+      "image": "postgres:17-alpine",
+      "container_name": "{ServiceName}-postgres",
+      "restart": "always",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "POSTGRES_PASSWORD={Passwords.0}",
+        "POSTGRES_USER=postiz-user",
+        "POSTGRES_DB=postiz-db-local"
+      ],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
+      },
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-postgres-data",
+          "target": "/var/lib/postgresql/data"
+        }
+      ],
+      "networks": [
+        "{ServiceName}"
+      ],
+      "healthcheck": {
+        "test": ["CMD", "pg_isready -U postiz-user -d postiz-db-local"],
+        "interval": "10s",
+        "timeout": "3s",
+        "retries": 3
+      }
+    },
+    "{ServiceName}-redis": {
+      "image": "redis:7.2",
+      "container_name": "{ServiceName}-redis",
+      "restart": "always",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto"
+      ],
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
+      },
+      "healthcheck": {
+        "test": ["CMD", "redis-cli ping"],
+        "interval": "10s",
+        "timeout": "3s",
+        "retries": 3
+      },
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-redis-data",
+          "target": "/data"
+        }
+      ],
+      "networks": [
+        "{ServiceName}"
+      ]
+    },
+    "{ServiceName}-spotlight": {
+      "pull_policy": "always",
+      "container_name": "{ServiceName}-spotlight",
+      "UID": 1000,
+      "GID": 1000,
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto"
+      ],
+      "ports": [
+        "8969:8969/tcp"
+      ],
+      "image": "ghcr.io/getsentry/spotlight:latest",
+      "labels": {
+        "cosmos-stack": "{ServiceName}",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
+      },
+      "networks": [
+        "{ServiceName}"
+      ]
+    },
+    "{ServiceName}-temporal-elasticsearch": {
+      "container_name": "{ServiceName}-temporal-elasticsearch",
+      "image": "elasticsearch:7.17.27",
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "cluster.routing.allocation.disk.threshold_enabled=true",
+        "cluster.routing.allocation.disk.watermark.low=512mb",
+        "cluster.routing.allocation.disk.watermark.high=256mb",
+        "cluster.routing.allocation.disk.watermark.flood_stage=128mb",
+        "discovery.type=single-node",
+        "ES_JAVA_OPTS=-Xms256m -Xmx256m",
+        "xpack.security.enabled=false"
+      ],
+      "UID": 1000,
+      "GID": 1000,
+      "labels": {
+        "cosmos-stack": "{ServiceName}-temporal",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
+      },
+      "networks": [
+        "{ServiceName}-temporal"
+      ],
+      "expose": [
+        9200
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-temporal-elastisearch-data",
+          "target": "/var/lib/elasticsearch/data"
+        }
+      ]
+    },
+    "{ServiceName}-temporal-postgresql": {
+      "container_name": "{ServiceName}-temporal-postgresql",
+      "image": "postgres:16",
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "POSTGRES_PASSWORD={Passwords.1}",
+        "POSTGRES_USER=temporal"
+      ],
+      "UID": 1000,
+      "GID": 1000,
+      "labels": {
+        "cosmos-stack": "{ServiceName}-temporal",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
+      },
+      "networks": [
+        "{ServiceName}-temporal"
+      ],
+      "expose": [
+        5432
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-temporal-postgresql-data",
+          "target": "/var/lib/postgresql/data"
+        }
+      ]
+    },
+    "{ServiceName}-temporal": {
+      "container_name": "{ServiceName}-temporal",
+      "ports": [
+        "7233:7233"
+      ],
+      "image": "temporalio/auto-setup:1.28.1",
+      "depends_on": [
+        "{ServiceName}-temporal-postgresql",
+        "{ServiceName}-temporal-elasticsearch"
+      ],
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "DB=postgres12",
+        "DB_PORT=5432",
+        "POSTGRES_USER=temporal",
+        "POSTGRES_PWD={Passwords.1}",
+        "POSTGRES_SEEDS={ServiceName}-temporal-postgresql",
+        "DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml",
+        "ENABLE_ES=true",
+        "ES_SEEDS={ServiceName}-temporal-elasticsearch",
+        "ES_VERSION=v7",
+        "TEMPORAL_NAMESPACE=default"
+      ],
+      "UID": 1000,
+      "GID": 1000,
+      "labels": {
+        "cosmos-stack": "{ServiceName}-temporal",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png",
+        "kompose.volume.type": "configMap"
+      },
+      "networks": [
+        "{ServiceName}-temporal"
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "{ServiceName}-temporal-dynamicconfig",
+          "target": ":/etc/temporal/config/dynamicconfig"
+        }
+      ]
+    },
+    "{ServiceName}-temporal-admin-tools": {
+      "container_name": "{ServiceName}-temporal-admin-tools",
+      "image": "temporalio/admin-tools:1.28.1-tctl-1.18.4-cli-1.4.1",
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "TEMPORAL_ADDRESS={ServiceName}-temporal:7233",
+        "TEMPORAL_CLI_ADDRESS={ServiceName}-temporal:7233"
+      ],
+      "UID": 1000,
+      "GID": 1000,
+      "labels": {
+        "cosmos-stack": "{ServiceName}-temporal",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
+      },
+      "networks": [
+        "{ServiceName}-temporal"
+      ],
+      "stdin_open": true,
+      "depends_on": [
+        "{ServiceName}-temporal"
+      ],
+      "tty": true
+    },
+    "{ServiceName}-temporal-ui": {
+      "container_name": "{ServiceName}-temporal-ui",
+      "image": "temporalio/ui:2.34.0",
+      "environment": [
+        "PUID=1000",
+        "PGID=1000",
+        "TZ=auto",
+        "TEMPORAL_ADDRESS={ServiceName}-temporal:7233",
+        "TEMPORAL_CORS_ORIGINS=http://127.0.0.1:3000"
+      ],
+      "UID": 1000,
+      "GID": 1000,
+      "labels": {
+        "cosmos-stack": "{ServiceName}-temporal",
+        "cosmos-stack-main": "{ServiceName}",
+        "cosmos-force-network-secured": "true",
+        "cosmos-auto-update": "true",
+        "cosmos-icon": "https://vesperrin.github.io/cosmos-servapps/servapps/Postiz/icon.png"
+      },
+      "networks": [
+        "{ServiceName}-temporal"
+      ],
+      "ports": [
+        "8080:8080"
+      ]
+    }
+  },
+
+  "networks": {
+    "{ServiceName}": {},
+    "{ServiceName}-temporal": {}
+  }
+}
