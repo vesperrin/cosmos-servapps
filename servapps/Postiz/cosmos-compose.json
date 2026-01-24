@@ -131,11 +131,9 @@
             "Enabled": true
           },
           "AuthEnabled": true
-    {if Context.adminOnly
-          },
-          "AuthAdmin": true
-    {/if
-          }
+          {if Context.adminOnly}
+          , "AuthAdmin": true
+          {/if}
         }
       ]
     },
