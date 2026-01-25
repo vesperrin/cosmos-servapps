@@ -109,10 +109,14 @@
         "{ServiceName}": {},
         "{ServiceName}-temporal": {}
       },
-      "depends_on": [
-        "{ServiceName}-postgres",
-        "{ServiceName}-redis"
-      ],
+      "depends_on": {
+        "{ServiceName}-postgres": {
+          "condition": "service_healthy"
+        },
+        "{ServiceName}-redis": {
+          "condition": "service_healthy"
+        }
+      },
       "routes": [
         {
           "name": "{ServiceName}",
@@ -305,10 +309,10 @@
         "7233:7233"
       ],
       "image": "temporalio/auto-setup:1.28.1",
-      "depends_on": [
-        "{ServiceName}-temporal-postgresql",
-        "{ServiceName}-temporal-elasticsearch"
-      ],
+      "depends_on": {
+        "{ServiceName}-temporal-postgresql": {},
+        "{ServiceName}-temporal-elasticsearch": {}
+      },
       "environment": [
         "PUID=1000",
         "PGID=1000",
@@ -368,9 +372,9 @@
         "{ServiceName}-temporal": {}
       },
       "stdin_open": true,
-      "depends_on": [
-        "{ServiceName}-temporal"
-      ],
+      "depends_on": {
+        "{ServiceName}-temporal": {}
+      },
       "tty": true
     },
     "{ServiceName}-temporal-ui": {
