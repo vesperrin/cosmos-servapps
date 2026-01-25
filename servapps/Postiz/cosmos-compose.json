@@ -1,6 +1,12 @@
 {
   "cosmos-installer": {
     "form": [
+      {
+        "name": "dynamicConfigPath",
+        "label": "What is the path to your dynamic config? (You must place this config in it: https://github.com/gitroomhq/postiz-app/blob/main/dynamicconfig/development-sql.yaml)",
+        "initialValue": "{DefaultDataPath}/temporal-dynamic-config",
+        "type": "text"
+      }
     ],
     "post-install": [
       {
@@ -333,8 +339,8 @@
       },
       "volumes": [
         {
-          "type": "volume",
-          "source": "{ServiceName}-temporal-dynamicconfig",
+          "type": "bind",
+          "source": "{Context.dynamicConfigPath}",
           "target": "/etc/temporal/config/dynamicconfig"
         }
       ]
