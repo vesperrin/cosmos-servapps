@@ -253,8 +253,8 @@
       "networks": {
         "{ServiceName}-temporal": {}
       },
-      "expose": [
-        9200
+      "ports": [
+        "9200:9200"
       ],
       "volumes": [
         {
@@ -286,8 +286,8 @@
       "networks": {
         "{ServiceName}-temporal": {}
       },
-      "expose": [
-        5432
+      "ports": [
+        "5432:5432"
       ],
       "volumes": [
         {
