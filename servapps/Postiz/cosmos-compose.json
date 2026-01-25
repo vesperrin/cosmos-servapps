@@ -374,6 +374,7 @@
         "PUID=1000",
         "PGID=1000",
         "TZ=auto",
+        "TEMPORAL_UI_PORT=7055",
         "TEMPORAL_ADDRESS={ServiceName}-temporal:7233",
         "TEMPORAL_CORS_ORIGINS=http://127.0.0.1:3000"
       ],
@@ -390,7 +391,7 @@
         "{ServiceName}-temporal": {}
       },
       "ports": [
-        "8080:7055"
+        "7055:7055"
       ],
       "routes": [
         {
