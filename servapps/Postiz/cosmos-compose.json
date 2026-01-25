@@ -161,8 +161,8 @@
       },
       "healthcheck": {
         "test": ["CMD", "pg_isready -U postiz-user -d postiz-db-local"],
-        "interval": "10s",
-        "timeout": "3s",
+        "interval": 10,
+        "timeout": 3,
         "retries": 3
       }
     },
@@ -186,8 +186,8 @@
       },
       "healthcheck": {
         "test": ["CMD", "redis-cli ping"],
-        "interval": "10s",
-        "timeout": "3s",
+        "interval": 10,
+        "timeout": 3,
         "retries": 3
       },
       "volumes": [
