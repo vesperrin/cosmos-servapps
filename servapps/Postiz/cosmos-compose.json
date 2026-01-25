@@ -103,14 +103,10 @@
         "{ServiceName}": {},
         "{ServiceName}-temporal": {}
       },
-      "depends_on": {
-        "{ServiceName}-postgres": {
-          "condition": "service_healthy"
-        },
-        "{ServiceName}-redis": {
-          "condition": "service_healthy"
-        }
-      },
+      "depends_on": [
+        "{ServiceName}-postgres",
+        "{ServiceName}-redis"
+      ],
       "routes": [
         {
           "name": "{ServiceName}",
