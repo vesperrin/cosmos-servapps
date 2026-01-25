@@ -9,7 +9,7 @@
       }
     ]
   },
-  "minVersion": "0.7.6",
+  "minVersion": "0.20.2",
   "services": {
     "{ServiceName}": {
       "image": "ghcr.io/gitroomhq/postiz-app:latest",
