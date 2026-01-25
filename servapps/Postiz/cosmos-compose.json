@@ -335,7 +335,7 @@
         {
           "type": "volume",
           "source": "{ServiceName}-temporal-dynamicconfig",
-          "target": ":/etc/temporal/config/dynamicconfig"
+          "target": "/etc/temporal/config/dynamicconfig"
         }
       ]
     },
@@ -390,7 +390,24 @@
         "{ServiceName}-temporal": {}
       },
       "ports": [
-        "8080:8080"
+        "8080:7055"
+      ],
+      "routes": [
+        {
+          "name": "{ServiceName} Temporal UI",
+          "description": "Expose {ServiceName} Temporal Web UI to the web",
+          "useHost": true,
+          "target": "http://{ServiceName}-temporal-ui:7055",
+          "mode": "SERVAPP",
+          "Timeout": 14400000,
+          "ThrottlePerMinute": 12000,
+          "BlockCommonBots": true,
+          "SmartShield": {
+            "Enabled": true
+          },
+          "AuthEnabled": true,
+          "AuthAdmin": true
+        }
       ]
     }
   },
